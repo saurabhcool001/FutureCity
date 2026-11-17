@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_TownCouncil/Scenes/TownCouncil.unity
+    guid: 5369b335ec192e74d9a2d1f2013ddfc9
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 13f6f87036926f94ab0417ca1b31725c
   - enabled: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cee6761b94ae5e4db09d2487a769c46, type: 3}
+  m_Name: Role_Amara
+  m_EditorClassIdentifier: 
+  displayName: Amara
+  age: 38
+  job: A&E nurse
+  portrait: {fileID: 0}
+  accentColor: {r: 0.85, g: 0.33, b: 0.33, a: 1}
+  hiddenGoal: Get more funding into healthcare.
+  secret: You've been offered a well-paid job at a private AI-health company.
+  roomEnvironmentPrefab: {fileID: 0}
+  roomIntro: Your night shift in A&E is ending. Three patients waited six hours tonight.
+  valuePriorities:
+  - meter: {fileID: 11400000, guid: 77b5a3389c02a274784a964ad3dd489b, type: 2}
+    weight: 2
+  - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
+    weight: 0.5
+  - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
+    weight: 0.5
+  persuadability: 0.4
+  defaultStance: 1
+  endings:
+  - requiredFlags: []
+    text: '[Draft] Amara''s default ending.'

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
+  m_Name: Policy_R2_HealthData
+  m_EditorClassIdentifier: 
+  title: '[Draft] Share residents'' health records with CIVIC'
+  summary: Give CIVIC access to GP records so it can predict demand and plan services.
+  civicPitch: {fileID: 11400000, guid: 1c925163fc9a5914c900ead5297812d6, type: 2}
+  affectedBuildings:
+  - {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
+  decisionSeconds: 0
+  requiresMajorityToOverride: 0
+  amendWording: Share anonymised records only, with an opt-out for every resident.
+  onAgree: {fileID: 11400000, guid: 77bc1b25afd5ab64d854766dfc4d22b5, type: 2}
+  onDisagree: {fileID: 11400000, guid: 9e6d048de45e33a4296f782320d4b383, type: 2}
+  onAmend: {fileID: 11400000, guid: 051e61ecce0429b4c8c82a473f74e5b8, type: 2}
+  aiPreferences:
+  - role: {fileID: 11400000, guid: 993bfcbe932d07b41b7c2a8b512897ee, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: 22ccb6e53bf82204db6844ba1bf50d9f, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: cdc239694a3a30145b7776477bdf016f, type: 2}
+    choice: 3
+  - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
+    choice: 2

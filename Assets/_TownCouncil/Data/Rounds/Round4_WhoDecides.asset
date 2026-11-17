@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b54a2dcdfd52a46bbfa3169c6ce787, type: 3}
+  m_Name: Round4_WhoDecides
+  m_EditorClassIdentifier: 
+  year: 2054
+  title: Who Decides?
+  lesson: Staying in control takes effort and persuasion. Democracy and human agency.
+  civicIntro: {fileID: 11400000, guid: a52bf46ccb792c94f8267495fdabffea, type: 2}
+  presentation: 0
+  policies:
+  - {fileID: 11400000, guid: 5836f48dcaf48cc48809ddf9fc6b18a6, type: 2}
+  - {fileID: 11400000, guid: 1e29187302116fd448b23e7da7426cc6, type: 2}
+  perspectives: []

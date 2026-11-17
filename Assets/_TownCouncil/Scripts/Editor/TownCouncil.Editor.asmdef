@@ -1,0 +1,27 @@
+{
+    "name": "TownCouncil.Editor",
+    "rootNamespace": "TownCouncil.EditorTools",
+    "references": [
+        "TownCouncil.Core",
+        "TownCouncil.Networking",
+        "TownCouncil.Experience",
+        "VRMP",
+        "Unity.Netcode.Runtime",
+        "Unity.Collections",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.XR.CoreUtils",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
+  m_Name: Policy_R1_AIShuttles
+  m_EditorClassIdentifier: 
+  title: '[Draft] Replace night buses with AI shuttles'
+  summary: Swap the night bus routes for on-demand self-driving shuttles booked through
+    the CIVIC app.
+  civicPitch: {fileID: 11400000, guid: dddafe7533f94ca4e9d47e8ee28a10b7, type: 2}
+  affectedBuildings:
+  - {fileID: 11400000, guid: 198362be25415c1498a0abadf623e42d, type: 2}
+  - {fileID: 11400000, guid: 1d08402ac2d770949ba36f21c11af50f, type: 2}
+  decisionSeconds: 0
+  requiresMajorityToOverride: 0
+  amendWording: Run AI shuttles, but keep one staffed night bus and phone booking
+    for people without the app.
+  onAgree: {fileID: 11400000, guid: eee7c63ddfa1b2a4a8da6d0c51b9df76, type: 2}
+  onDisagree: {fileID: 11400000, guid: a16ff4268d763574b800169044a3d543, type: 2}
+  onAmend: {fileID: 11400000, guid: d5322e42ea259074381895ea8b06dcc1, type: 2}
+  aiPreferences:
+  - role: {fileID: 11400000, guid: 993bfcbe932d07b41b7c2a8b512897ee, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: 22ccb6e53bf82204db6844ba1bf50d9f, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: cdc239694a3a30145b7776477bdf016f, type: 2}
+    choice: 2
+  - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
+    choice: 3

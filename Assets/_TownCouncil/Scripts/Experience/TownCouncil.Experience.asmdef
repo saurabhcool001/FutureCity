@@ -1,0 +1,24 @@
+{
+    "name": "TownCouncil.Experience",
+    "rootNamespace": "TownCouncil.Experience",
+    "references": [
+        "TownCouncil.Core",
+        "TownCouncil.Networking",
+        "VRMP",
+        "Unity.Netcode.Runtime",
+        "Unity.Collections",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.XR.CoreUtils",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

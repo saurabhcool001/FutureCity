@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616b4815e21ed68449b77c5415d06c9c, type: 3}
+  m_Name: Outcome_R1_CloseLibrary_Agree
+  m_EditorClassIdentifier: 
+  meterDeltas:
+  - meter: {fileID: 11400000, guid: 77b5a3389c02a274784a964ad3dd489b, type: 2}
+    amount: 2
+  - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
+    amount: 1
+  - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
+    amount: -1
+  - meter: {fileID: 11400000, guid: 5144f15267509594d97f12fc95559eec, type: 2}
+    amount: 1
+  cityChanges:
+  - building: {fileID: 11400000, guid: f792e71f1e0af794d91fcc3a5167acf1, type: 2}
+    state: {fileID: 11400000, guid: 717264b26f30f934082b22ae8221d234, type: 2}
+    customTransitionPrefab: {fileID: 0}
+  - building: {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
+    state: {fileID: 11400000, guid: 0300199ff96743a46a8a7a1693455a61, type: 2}
+    customTransitionPrefab: {fileID: 0}
+  headline: Library closes as screening programme launches
+  diaryAuthor: Sam
+  diaryYear: 2046
+  diaryText: Revising in McDonald's again. Nowhere quiet left.
+  endingFlags:
+  - library_closed
