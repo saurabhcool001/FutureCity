@@ -123,6 +123,22 @@ namespace TownCouncil.Networking
         /// <summary>Tell everyone how far this player has got (role room, seated...).</summary>
         public void ReportStage(SeatStage stage) => ReportStageRpc(stage);
 
+        /// <summary>Show this player's secret to the whole council. Can't be undone.</summary>
+        public void RevealSecret() => RevealSecretRpc();
+
+        /// <summary>Seat held by a client, or -1.</summary>
+        public int SeatOfClientId(ulong clientId) => SeatOfClient(clientId);
+
+        /// <summary>Authority only: reveal a seat's secret (used for AI councillors).</summary>
+        internal void RevealSeatSecret(int seatIndex)
+        {
+            if (!HasAuthority || seatIndex < 0 || seatIndex >= m_Seats.Count) return;
+            var seat = m_Seats[seatIndex];
+            if (!seat.HasRole || seat.SecretRevealed) return;
+            seat.SecretRevealed = true;
+            m_Seats[seatIndex] = seat;
+        }
+
         /// <summary>Debug/teacher: stop waiting and fill empty seats with AI now.</summary>
         public void RequestAIFillNow() => ForceAIFillRpc();
 
@@ -412,6 +428,12 @@ namespace TownCouncil.Networking
 
             seat.Stage = stage;
             m_Seats[seatIndex] = seat;
+        }
+
+        [Rpc(SendTo.Authority)]
+        void RevealSecretRpc(RpcParams rpcParams = default)
+        {
+            RevealSeatSecret(SeatOfClient(rpcParams.Receive.SenderClientId));
         }
 
         [Rpc(SendTo.Authority)]

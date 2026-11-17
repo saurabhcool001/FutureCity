@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_Neglected
   m_EditorClassIdentifier: 
   displayName: Neglected
+  tint: {r: 0.45, g: 0.35, b: 0.28, a: 1}
+  heightMultiplier: 0.8
+  glow: 0

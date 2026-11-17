@@ -30,8 +30,11 @@ namespace TownCouncil.Core
         public PolicyOutcome onDisagree;
         public PolicyOutcome onAmend;
 
-        [Header("AI councillors (Fixed mode)")]
+        [Header("AI councillors")]
+        [Tooltip("Fixed mode: how each role's AI votes. Dynamic mode uses it as a nudge.")]
         public List<RoleVotePreference> aiPreferences = new();
+        [Tooltip("If an AI holds one of these roles, it reveals its secret while this policy is being decided.")]
+        public List<RoleDefinition> aiRevealRoles = new();
 
         /// <summary>The outcome for a resolved choice. None (no votes) counts as CIVIC proceeding.</summary>
         public PolicyOutcome OutcomeFor(VoteChoice choice) => choice switch

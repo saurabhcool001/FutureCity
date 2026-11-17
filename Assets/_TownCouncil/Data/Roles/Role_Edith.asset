@@ -33,4 +33,13 @@ MonoBehaviour:
   defaultStance: 2
   endings:
   - requiredFlags: []
-    text: '[Draft] Edith''s default ending.'
+    text: Edith still lives at Elmwood, and still asks every visitor to stay for
+      tea.
+  - requiredFlags:
+    - care_robots
+    text: The robots keep Edith safe and fed. Her daughter visits on Sundays; the
+      rest of the week is very quiet.
+  - requiredFlags:
+    - care_mixed
+    text: Mornings with Jo, nights with the robot. Edith started a Thursday card
+      game in the lounge.

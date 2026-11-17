@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_ReducedHours
   m_EditorClassIdentifier: 
   displayName: Reduced Hours
+  tint: {r: 0.95, g: 0.75, b: 0.35, a: 1}
+  heightMultiplier: 0.85
+  glow: 0.2

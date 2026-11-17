@@ -46,6 +46,79 @@ namespace TownCouncil.EditorTools
                     Round1(), Round2(), Round3(), Round4()
                 };
                 ScenarioAndConfig(rounds);
+                Upgrade();
+            }
+
+            // Upgrade -------------------------------------------------------------------------
+            // Fills fields added in later versions on assets that already exist, without touching
+            // anything a designer has changed.
+
+            void Upgrade()
+            {
+                StateLook("Closed", new Color(0.3f, 0.3f, 0.32f), 0.6f, 0f);
+                StateLook("ReducedHours", new Color(0.95f, 0.75f, 0.35f), 0.85f, 0.2f);
+                StateLook("Upgraded", new Color(0.75f, 0.9f, 1f), 1.35f, 0.6f);
+                StateLook("Robots", new Color(0.35f, 0.85f, 0.95f), 1.05f, 0.9f);
+                StateLook("MixedCare", new Color(0.45f, 0.85f, 0.7f), 1.1f, 0.4f);
+                StateLook("AppealsOffice", new Color(0.5f, 0.9f, 0.5f), 1.2f, 0.4f);
+                StateLook("Neglected", new Color(0.45f, 0.35f, 0.28f), 0.8f, 0f);
+                StateLook("Automated", new Color(0.6f, 0.55f, 1f), 1.15f, 0.8f);
+
+                Reveals("R2_CitizenScore", "Sam");
+                Reveals("R3_CareRobots", "Edith");
+                Reveals("R4_CivicDecides", "Leo");
+
+                Endings("Amara",
+                    ("Amara stayed at Newhaven General. Some nights, after a long shift, the private job offer still comes to mind.", new string[0]),
+                    ("The robot savings paid for new nurses. Amara stayed in A&E, and for the first time in years the waits came down.", new[] { "care_robots" }),
+                    ("CIVIC now reads every patient record. Amara took the private AI-health job; the pay is better, the questions harder.", new[] { "health_data" }));
+                Endings("Leo",
+                    ("Leo's company kept building for CIVIC, one contract at a time.", new string[0]),
+                    ("CIVIC now runs Newhaven alone, on code Leo's company wrote. The company is thriving. The town hall is empty.", new[] { "civic_decides" }),
+                    ("The council kept its say. Leo's company now builds the tools that explain CIVIC's decisions to residents.", new[] { "humans_decide" }));
+                Endings("Edith",
+                    ("Edith still lives at Elmwood, and still asks every visitor to stay for tea.", new string[0]),
+                    ("The robots keep Edith safe and fed. Her daughter visits on Sundays; the rest of the week is very quiet.", new[] { "care_robots" }),
+                    ("Mornings with Jo, nights with the robot. Edith started a Thursday card game in the lounge.", new[] { "care_mixed" }));
+                Endings("Sam",
+                    ("Sam finished school in Newhaven and still walks past the old town hall on the way home.", new string[0]),
+                    ("With the library gone, Sam revised in cafés and on night buses, and still made the grades, just.", new[] { "library_closed" }),
+                    ("Evenings in the library paid off: Sam is the first in the family to go to university.", new[] { "library_saved" }),
+                    ("Three evenings a week in the library were enough. Sam is off to university in the autumn.", new[] { "library_reduced" }),
+                    ("Thanks to the appeals office, Sam's family finally moved into a bigger flat on Riverside Street.", new[] { "score_amended" }));
+            }
+
+            void StateLook(string key, Color tint, float height, float glow)
+            {
+                var state = AssetDatabase.LoadAssetAtPath<BuildingStateId>($"{TCPaths.BuildingStates}/BuildingState_{key}.asset");
+                if (state == null || state.tint != Color.white || !Mathf.Approximately(state.heightMultiplier, 1f) || state.glow != 0f) return;
+                state.tint = tint;
+                state.heightMultiplier = height;
+                state.glow = glow;
+                Dirty(state);
+            }
+
+            void Reveals(string policyKey, string roleName)
+            {
+                var policy = AssetDatabase.LoadAssetAtPath<PolicyDefinition>($"{TCPaths.Policies}/Policy_{policyKey}.asset");
+                if (policy == null || !m_Roles.TryGetValue(roleName, out var role) || role == null) return;
+                policy.aiRevealRoles ??= new List<RoleDefinition>();
+                if (policy.aiRevealRoles.Count > 0) return;
+                policy.aiRevealRoles.Add(role);
+                Dirty(policy);
+            }
+
+            void Endings(string roleName, params (string text, string[] flags)[] endings)
+            {
+                if (!m_Roles.TryGetValue(roleName, out var role) || role == null) return;
+                bool onlyDraft = role.endings == null || role.endings.Count == 0 ||
+                                 (role.endings.Count == 1 && (role.endings[0] == null || role.endings[0].text == null || role.endings[0].text.StartsWith("[Draft]")));
+                if (!onlyDraft) return;
+                role.endings = new List<RoleEnding>();
+                // Most specific first; the default (no flags) is used when nothing else matches.
+                for (int i = endings.Length - 1; i >= 0; i--)
+                    role.endings.Insert(0, new RoleEnding { text = endings[i].text, requiredFlags = endings[i].flags });
+                Dirty(role);
             }
 
             // Values ------------------------------------------------------------------------

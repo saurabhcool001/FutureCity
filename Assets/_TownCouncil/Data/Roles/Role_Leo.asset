@@ -30,4 +30,12 @@ MonoBehaviour:
   defaultStance: 1
   endings:
   - requiredFlags: []
-    text: '[Draft] Leo''s default ending.'
+    text: Leo's company kept building for CIVIC, one contract at a time.
+  - requiredFlags:
+    - civic_decides
+    text: CIVIC now runs Newhaven alone, on code Leo's company wrote. The company
+      is thriving. The town hall is empty.
+  - requiredFlags:
+    - humans_decide
+    text: The council kept its say. Leo's company now builds the tools that explain
+      CIVIC's decisions to residents.

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_AppealsOffice
   m_EditorClassIdentifier: 
   displayName: Appeals Office
+  tint: {r: 0.5, g: 0.9, b: 0.5, a: 1}
+  heightMultiplier: 1.2
+  glow: 0.4

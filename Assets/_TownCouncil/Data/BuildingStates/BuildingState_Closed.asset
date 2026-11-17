@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_Closed
   m_EditorClassIdentifier: 
   displayName: Closed
+  tint: {r: 0.3, g: 0.3, b: 0.32, a: 1}
+  heightMultiplier: 0.6
+  glow: 0

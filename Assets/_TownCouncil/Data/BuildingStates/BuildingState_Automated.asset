@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_Automated
   m_EditorClassIdentifier: 
   displayName: Automated
+  tint: {r: 0.6, g: 0.55, b: 1, a: 1}
+  heightMultiplier: 1.15
+  glow: 0.8
