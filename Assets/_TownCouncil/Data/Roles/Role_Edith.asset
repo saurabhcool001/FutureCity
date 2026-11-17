@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cee6761b94ae5e4db09d2487a769c46, type: 3}
+  m_Name: Role_Edith
+  m_EditorClassIdentifier: 
+  displayName: Edith
+  age: 82
+  job: Care-home resident
+  portrait: {fileID: 0}
+  accentColor: {r: 0.55, g: 0.8, b: 0.45, a: 1}
+  hiddenGoal: Keep human contact in daily life.
+  secret: You can't use CIVIC's apps.
+  roomEnvironmentPrefab: {fileID: 0}
+  roomIntro: Your room at Elmwood care home. The tablet on your table has been blinking
+    for days.
+  valuePriorities:
+  - meter: {fileID: 11400000, guid: 77b5a3389c02a274784a964ad3dd489b, type: 2}
+    weight: 1.5
+  - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
+    weight: 1.5
+  - meter: {fileID: 11400000, guid: 5144f15267509594d97f12fc95559eec, type: 2}
+    weight: -0.5
+  persuadability: 0.3
+  defaultStance: 2
+  endings:
+  - requiredFlags: []
+    text: '[Draft] Edith''s default ending.'

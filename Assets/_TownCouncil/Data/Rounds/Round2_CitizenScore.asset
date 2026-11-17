@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b54a2dcdfd52a46bbfa3169c6ce787, type: 3}
+  m_Name: Round2_CitizenScore
+  m_EditorClassIdentifier: 
+  year: 2048
+  title: The Citizen Score
+  lesson: One voice with the right information can change everything. Algorithmic
+    bias and privacy.
+  civicIntro: {fileID: 11400000, guid: 038ffbed177124245b08f531d3337456, type: 2}
+  presentation: 0
+  policies:
+  - {fileID: 11400000, guid: 72c5409c9d29cf44bbc7d914f8d6127b, type: 2}
+  - {fileID: 11400000, guid: bad3dec9fec4314449dc32d93e7b615b, type: 2}
+  perspectives: []

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
+  m_Name: Policy_R3_AITutors
+  m_EditorClassIdentifier: 
+  title: '[Draft] AI tutors replace the college''s evening classes'
+  summary: Evening classes move to personal AI tutors on residents' own devices.
+  civicPitch: {fileID: 11400000, guid: 1322eefac671c684c8df7a20f6c14dee, type: 2}
+  affectedBuildings:
+  - {fileID: 11400000, guid: 6385ca6185bc1b84aa49e53491a9b089, type: 2}
+  decisionSeconds: 0
+  requiresMajorityToOverride: 0
+  amendWording: AI tutors for most subjects, but keep two evening classes in person
+    at the college.
+  onAgree: {fileID: 11400000, guid: f25fe5b073c804d45ac7a1be91254d8d, type: 2}
+  onDisagree: {fileID: 11400000, guid: 5073872fafbf7694696f0f56270d110d, type: 2}
+  onAmend: {fileID: 11400000, guid: c45b7c28610925042a3192c7b378878c, type: 2}
+  aiPreferences:
+  - role: {fileID: 11400000, guid: 993bfcbe932d07b41b7c2a8b512897ee, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: 22ccb6e53bf82204db6844ba1bf50d9f, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: cdc239694a3a30145b7776477bdf016f, type: 2}
+    choice: 2
+  - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
+    choice: 3

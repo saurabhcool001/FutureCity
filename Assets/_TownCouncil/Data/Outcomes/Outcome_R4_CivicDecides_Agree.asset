@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616b4815e21ed68449b77c5415d06c9c, type: 3}
+  m_Name: Outcome_R4_CivicDecides_Agree
+  m_EditorClassIdentifier: 
+  meterDeltas:
+  - meter: {fileID: 11400000, guid: 5144f15267509594d97f12fc95559eec, type: 2}
+    amount: 3
+  - meter: {fileID: 11400000, guid: 233d006e3b498494cbdfa4a95faa5f6e, type: 2}
+    amount: -3
+  - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
+    amount: 1
+  cityChanges:
+  - building: {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
+    state: {fileID: 11400000, guid: 717264b26f30f934082b22ae8221d234, type: 2}
+    customTransitionPrefab: {fileID: 0}
+  headline: CIVIC now decides alone
+  diaryAuthor: Sam
+  diaryYear: 2055
+  diaryText: There's no council any more. I'm not sure who I'd even complain to.
+  endingFlags:
+  - civic_decides

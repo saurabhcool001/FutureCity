@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc246d9bdc596c45a5f718978925034, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  scenario: {fileID: 11400000, guid: e7dac4f42de63c44a86fc92a07d90703, type: 2}
+  lobbyWaitSeconds: 60
+  restartCountdownOnJoin: 1
+  minHumansToStart: 1
+  aiMode: 0
+  defaultDecisionSeconds: 60
+  allVotedShortcutSeconds: 5
+  fadeOutSeconds: 0.8
+  fadeInSeconds: 1
+  holdOnBlackSeconds: 0.4
+  cardRevealSeconds: 1.5

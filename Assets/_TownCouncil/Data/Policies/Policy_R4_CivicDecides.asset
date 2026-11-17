@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
+  m_Name: Policy_R4_CivicDecides
+  m_EditorClassIdentifier: 
+  title: Let CIVIC decide automatically
+  summary: Annual council sessions end. CIVIC makes every decision; citizens can
+    still view the results.
+  civicPitch: {fileID: 11400000, guid: ef59625f71d9f6042bb82f145ac230d7, type: 2}
+  affectedBuildings:
+  - {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
+  decisionSeconds: 0
+  requiresMajorityToOverride: 1
+  amendWording: "CIVIC decides small budget items; anything over \xA3100,000 still
+    comes to the council."
+  onAgree: {fileID: 11400000, guid: d70cfd62fb6e4a44ea29a82cc9dc4775, type: 2}
+  onDisagree: {fileID: 11400000, guid: de178480121fded449c6cc9c4e488391, type: 2}
+  onAmend: {fileID: 11400000, guid: 9e5f0f10fa7ba0641913a83be30ea2ab, type: 2}
+  aiPreferences:
+  - role: {fileID: 11400000, guid: 993bfcbe932d07b41b7c2a8b512897ee, type: 2}
+    choice: 2
+  - role: {fileID: 11400000, guid: 22ccb6e53bf82204db6844ba1bf50d9f, type: 2}
+    choice: 1
+  - role: {fileID: 11400000, guid: cdc239694a3a30145b7776477bdf016f, type: 2}
+    choice: 2
+  - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
+    choice: 2

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616b4815e21ed68449b77c5415d06c9c, type: 3}
+  m_Name: Outcome_R1_AIShuttles_Disagree
+  m_EditorClassIdentifier: 
+  meterDeltas:
+  - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
+    amount: -1
+  - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
+    amount: 1
+  cityChanges: []
+  headline: Night buses stay, at a cost
+  diaryAuthor: Leo
+  diaryYear: 2047
+  diaryText: We lost the shuttle pilot to the next town over.
+  endingFlags: []

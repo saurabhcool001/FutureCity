@@ -1,0 +1,20 @@
+{
+    "name": "TownCouncil.Networking",
+    "rootNamespace": "TownCouncil.Networking",
+    "references": [
+        "TownCouncil.Core",
+        "Unity.Netcode.Runtime",
+        "Unity.Collections",
+        "Unity.XR.CoreUtils",
+        "VRMP"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

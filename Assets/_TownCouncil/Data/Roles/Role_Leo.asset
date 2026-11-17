@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cee6761b94ae5e4db09d2487a769c46, type: 3}
+  m_Name: Role_Leo
+  m_EditorClassIdentifier: 
+  displayName: Leo
+  age: 29
+  job: Start-up founder
+  portrait: {fileID: 0}
+  accentColor: {r: 0.3, g: 0.6, b: 0.95, a: 1}
+  hiddenGoal: Win CIVIC contracts for your company.
+  secret: Your company helped build CIVIC.
+  roomEnvironmentPrefab: {fileID: 0}
+  roomIntro: Your office in the Tech Hub. A CIVIC contract renewal sits on your screen.
+  valuePriorities:
+  - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
+    weight: 2
+  - meter: {fileID: 11400000, guid: 5144f15267509594d97f12fc95559eec, type: 2}
+    weight: 1.5
+  persuadability: 0.2
+  defaultStance: 1
+  endings:
+  - requiredFlags: []
+    text: '[Draft] Leo''s default ending.'
