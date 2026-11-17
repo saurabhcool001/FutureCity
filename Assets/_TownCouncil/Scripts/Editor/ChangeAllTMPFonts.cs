@@ -5,7 +5,7 @@ using TMPro;
 
 public class ChangeAllTMPFonts : EditorWindow
 {
-    [MenuItem("Civitas/UI/Replace All TMP Fonts")]
+    [MenuItem("Town Council/UI/Replace All TMP Fonts")]
     public static void ReplaceFonts()
     {
         TMP_FontAsset newFont =
