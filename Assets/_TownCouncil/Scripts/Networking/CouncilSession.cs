@@ -47,6 +47,9 @@ namespace TownCouncil.Networking
         public event Action<CouncilPhase> PhaseChanged;
 
         public GameConfig Config => m_Config;
+
+        /// <summary>Set the Game Config (used by the scene builder and the repair tool).</summary>
+        public void AssignConfig(GameConfig config) => m_Config = config;
         public ScenarioDefinition Scenario => m_Config != null ? m_Config.scenario : null;
         public CouncilPhase Phase => m_Phase.Value;
         public int SeatCount => m_Seats != null ? m_Seats.Count : 0;
@@ -123,6 +126,22 @@ namespace TownCouncil.Networking
         /// <summary>Tell everyone how far this player has got (role room, seated...).</summary>
         public void ReportStage(SeatStage stage) => ReportStageRpc(stage);
 
+        /// <summary>Show this player's secret to the whole council. Can't be undone.</summary>
+        public void RevealSecret() => RevealSecretRpc();
+
+        /// <summary>Seat held by a client, or -1.</summary>
+        public int SeatOfClientId(ulong clientId) => SeatOfClient(clientId);
+
+        /// <summary>Authority only: reveal a seat's secret (used for AI councillors).</summary>
+        internal void RevealSeatSecret(int seatIndex)
+        {
+            if (!HasAuthority || seatIndex < 0 || seatIndex >= m_Seats.Count) return;
+            var seat = m_Seats[seatIndex];
+            if (!seat.HasRole || seat.SecretRevealed) return;
+            seat.SecretRevealed = true;
+            m_Seats[seatIndex] = seat;
+        }
+
         /// <summary>Debug/teacher: stop waiting and fill empty seats with AI now.</summary>
         public void RequestAIFillNow() => ForceAIFillRpc();
 
@@ -135,6 +154,9 @@ namespace TownCouncil.Networking
 
             if (Instance != null && Instance != this)
                 Debug.LogWarning("[Town Council] More than one CouncilSession in the scene; using the newest.", this);
+            if (m_Config == null || m_Config.scenario == null)
+                Debug.LogError("[Town Council] The Council Session has no Game Config (or the config has no scenario), so roles " +
+                               "can't load and the game can't start. Run Town Council > Repair Open Scene, then save the scene.", this);
             Instance = this;
         }
 
@@ -412,6 +434,12 @@ namespace TownCouncil.Networking
 
             seat.Stage = stage;
             m_Seats[seatIndex] = seat;
+        }
+
+        [Rpc(SendTo.Authority)]
+        void RevealSecretRpc(RpcParams rpcParams = default)
+        {
+            RevealSeatSecret(SeatOfClient(rpcParams.Receive.SenderClientId));
         }
 
         [Rpc(SendTo.Authority)]

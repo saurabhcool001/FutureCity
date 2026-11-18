@@ -35,3 +35,5 @@ MonoBehaviour:
     choice: 3
   - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
     choice: 3
+  aiRevealRoles:
+  - {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}

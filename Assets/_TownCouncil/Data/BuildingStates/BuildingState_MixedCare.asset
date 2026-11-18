@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_MixedCare
   m_EditorClassIdentifier: 
   displayName: Mixed Care
+  tint: {r: 0.45, g: 0.85, b: 0.7, a: 1}
+  heightMultiplier: 1.1
+  glow: 0.4

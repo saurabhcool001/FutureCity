@@ -32,4 +32,21 @@ MonoBehaviour:
   defaultStance: 2
   endings:
   - requiredFlags: []
-    text: '[Draft] Sam''s default ending.'
+    text: Sam finished school in Newhaven and still walks past the old town hall
+      on the way home.
+  - requiredFlags:
+    - library_closed
+    text: "With the library gone, Sam revised in caf\xE9s and on night buses, and
+      still made the grades, just."
+  - requiredFlags:
+    - library_saved
+    text: 'Evenings in the library paid off: Sam is the first in the family to go
+      to university.'
+  - requiredFlags:
+    - library_reduced
+    text: Three evenings a week in the library were enough. Sam is off to university
+      in the autumn.
+  - requiredFlags:
+    - score_amended
+    text: Thanks to the appeals office, Sam's family finally moved into a bigger
+      flat on Riverside Street.

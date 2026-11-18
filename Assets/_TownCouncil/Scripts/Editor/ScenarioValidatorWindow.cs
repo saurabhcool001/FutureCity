@@ -100,6 +100,8 @@ namespace TownCouncil.EditorTools
             {
                 if (round == null) { Add(Severity.Error, "The scenario has an empty round slot.", s); continue; }
                 if (round.PolicyCount == 0) Add(Severity.Error, $"{round.name}: no policies.", round);
+                if (round.presentation == PolicyPresentation.AllAtOnce && round.PolicyCount > 4)
+                    Add(Severity.Warning, $"{round.name}: {round.PolicyCount} policies at once means {round.PolicyCount} ballot rows per seat; the far rows are hard to reach.", round);
                 foreach (var policy in round.policies) CheckPolicy(s, round, policy);
             }
 
@@ -119,6 +121,10 @@ namespace TownCouncil.EditorTools
             CheckOutcome(s, label, "Agree", policy.onAgree, policy);
             CheckOutcome(s, label, "Disagree", policy.onDisagree, policy);
             CheckOutcome(s, label, "Amend", policy.onAmend, policy);
+
+            foreach (var role in policy.aiRevealRoles)
+                if (role == null || !s.roles.Contains(role))
+                    Add(Severity.Warning, $"{label}: an AI reveal role isn't in the scenario.", policy);
 
             if (m_Config.aiMode == AIMode.Fixed)
                 foreach (var role in s.roles)

@@ -41,6 +41,8 @@ namespace TownCouncil.Networking
         public int RoleIndex;
         public SeatStage Stage;
         public FixedString64Bytes Name;
+        /// <summary>The occupant has shown their secret to the council.</summary>
+        public bool SecretRevealed;
 
         public static SeatState Empty => new SeatState
         {
@@ -48,7 +50,8 @@ namespace TownCouncil.Networking
             ClientId = NoClient,
             RoleIndex = -1,
             Stage = SeatStage.Joined,
-            Name = default
+            Name = default,
+            SecretRevealed = false
         };
 
         public bool IsEmpty => Occupant == SeatOccupant.Empty;
@@ -63,14 +66,15 @@ namespace TownCouncil.Networking
             serializer.SerializeValue(ref RoleIndex);
             serializer.SerializeValue(ref Stage);
             serializer.SerializeValue(ref Name);
+            serializer.SerializeValue(ref SecretRevealed);
         }
 
         public bool Equals(SeatState other) =>
             Occupant == other.Occupant && ClientId == other.ClientId && RoleIndex == other.RoleIndex &&
-            Stage == other.Stage && Name.Equals(other.Name);
+            Stage == other.Stage && Name.Equals(other.Name) && SecretRevealed == other.SecretRevealed;
 
         public override bool Equals(object obj) => obj is SeatState other && Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine((int)Occupant, ClientId, RoleIndex, (int)Stage);
+        public override int GetHashCode() => HashCode.Combine((int)Occupant, ClientId, RoleIndex, (int)Stage, SecretRevealed);
     }
 }

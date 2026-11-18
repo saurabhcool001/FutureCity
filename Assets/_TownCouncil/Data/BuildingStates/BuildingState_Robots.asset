@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_Robots
   m_EditorClassIdentifier: 
   displayName: Robots
+  tint: {r: 0.35, g: 0.85, b: 0.95, a: 1}
+  heightMultiplier: 1.05
+  glow: 0.9

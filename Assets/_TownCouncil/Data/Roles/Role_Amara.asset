@@ -32,4 +32,13 @@ MonoBehaviour:
   defaultStance: 1
   endings:
   - requiredFlags: []
-    text: '[Draft] Amara''s default ending.'
+    text: Amara stayed at Newhaven General. Some nights, after a long shift, the
+      private job offer still comes to mind.
+  - requiredFlags:
+    - care_robots
+    text: The robot savings paid for new nurses. Amara stayed in A&E, and for the
+      first time in years the waits came down.
+  - requiredFlags:
+    - health_data
+    text: CIVIC now reads every patient record. Amara took the private AI-health
+      job; the pay is better, the questions harder.

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5d982a89a15ef1e17530b743dcec75, type: 3}
+  m_Name: OfflineTTSSettings
+  m_EditorClassIdentifier: 
+  location: 0
+  modelFolder: Supertonic
+  modelVersion: supertonic-3
+  defaultVoice: F1
+  defaultLanguage: en
+  steps: 8
+  speed: 1.05
+  chunkSilence: 0.3
+  desktopThreads: 0
+  mobileThreads: 3
+  mobileSteps: 5
+  useNnapiOnAndroid: 0
+  warmUpOnLoad: 1
+  memoryCacheEntries: 64
+  diskCache: 1
+  wordHighlight:
+    enabled: 1
+    applyColor: 1
+    highlightColor: {r: 1, g: 0.78, b: 0.15, a: 1}
+    zoomScale: 1.071
+    popDuration: 0.15
+    bounce: 0.5
+    holdZoomWhileSpoken: 1
+    lift: 0.08
+    tintSpokenWords: 0
+    spokenWordColor: {r: 0.65, g: 0.65, b: 0.7, a: 1}
+  timingLibraries: []

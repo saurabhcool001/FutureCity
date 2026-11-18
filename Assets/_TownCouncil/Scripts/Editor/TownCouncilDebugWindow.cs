@@ -40,9 +40,11 @@ namespace TownCouncil.EditorTools
             if (session != null && session.IsSpawned)
             {
                 DrawSession(session);
+                DrawGame();
                 DrawAIPreview(session);
             }
             DrawDirector();
+            DrawSpeech();
             EditorGUILayout.EndScrollView();
         }
 
@@ -88,6 +90,66 @@ namespace TownCouncil.EditorTools
                 if (GUILayout.Button("Fill empty seats with AI now")) session.RequestAIFillNow();
         }
 
+        static void DrawGame()
+        {
+            var game = CouncilGame.Instance;
+            if (game == null || !game.IsSpawned) return;
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Game", EditorStyles.boldLabel);
+            var round = game.CurrentRound;
+            EditorGUILayout.LabelField("Phase", game.Phase.ToString());
+            EditorGUILayout.LabelField("Round", round != null ? $"{game.RoundIndex + 1} · {round.DisplayName}" : "—");
+            EditorGUILayout.LabelField("On the table", string.Join(", ", game.ActivePolicies));
+            float left = game.SecondsLeft;
+            EditorGUILayout.LabelField("Time left", left < 0 ? "—" : $"{left:0.0} s");
+
+            using (new EditorGUI.DisabledScope(game.Phase == GamePhase.NotStarted || game.Phase == GamePhase.Epilogue))
+                if (GUILayout.Button("Skip to the next phase")) game.RequestSkipPhase();
+
+            if (game.Phase == GamePhase.Deciding || game.Phase == GamePhase.Resolving)
+            {
+                var session = game.Session;
+                foreach (var p in game.ActivePolicies)
+                {
+                    var policy = game.GetPolicy(p);
+                    var votes = new List<string>();
+                    for (int s = 0; s < session.SeatCount; s++)
+                    {
+                        var seat = session.GetSeat(s);
+                        var role = seat.HasRole ? session.GetRole(seat.RoleIndex) : null;
+                        votes.Add($"{(role != null ? role.displayName : $"Seat {s + 1}")}: {game.GetVote(s, p)}");
+                    }
+                    EditorGUILayout.LabelField(policy != null ? policy.title : $"Policy {p + 1}", string.Join(", ", votes), EditorStyles.wordWrappedLabel);
+                }
+
+                if (game.Phase == GamePhase.Deciding && session.LocalSeatIndex >= 0)
+                {
+                    EditorGUILayout.LabelField("Vote as this headset (no VR needed)");
+                    foreach (var p in game.ActivePolicies)
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label($"Policy {p + 1}", GUILayout.Width(70));
+                            if (GUILayout.Button("Agree")) game.CastVote(p, VoteChoice.Agree);
+                            if (GUILayout.Button("Disagree")) game.CastVote(p, VoteChoice.Disagree);
+                            if (GUILayout.Button("Amend")) game.CastVote(p, VoteChoice.Amend);
+                            if (GUILayout.Button("Withdraw")) game.CastVote(p, VoteChoice.None);
+                        }
+                }
+            }
+
+            var record = game.Record;
+            EditorGUILayout.LabelField("Decisions so far", $"{record.Results.Count} · matched CIVIC {record.AgreementPercent}% · deadlocks {record.Deadlocks}");
+            if (game.Scenario != null)
+                foreach (var meter in game.Scenario.meters)
+                    if (meter != null) EditorGUILayout.LabelField($"   {meter.displayName}", $"{record.ValueOf(meter)} / {meter.maxValue}");
+            if (record.Flags.Count > 0) EditorGUILayout.LabelField("Flags", string.Join(", ", record.Flags), EditorStyles.wordWrappedLabel);
+
+            if (game.Session.LocalSeatIndex >= 0 && !game.Session.GetSeat(game.Session.LocalSeatIndex).SecretRevealed &&
+                GUILayout.Button("Reveal my secret (as this headset)"))
+                game.Session.RevealSecret();
+        }
+
         void DrawAIPreview(CouncilSession session)
         {
             var scenario = session.Scenario;
@@ -115,6 +177,26 @@ namespace TownCouncil.EditorTools
                 }
                 EditorGUILayout.LabelField(policy.title, line.Count > 0 ? string.Join(", ", line) : "No AI seats yet", EditorStyles.wordWrappedLabel);
             }
+        }
+
+        static void DrawSpeech()
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Speech", EditorStyles.boldLabel);
+            if (!SpeechHub.IsInstalled)
+            {
+                EditorGUILayout.HelpBox("Speech isn't active: install the FutureCity Offline TTS package, then use " +
+                                        "Town Council > Speech > Add Speech To Open Scene (or rebuild the scene).", MessageType.None);
+                return;
+            }
+            EditorGUILayout.LabelField("Voice model", SpeechHub.IsReady ? "Loaded" : "Loading…");
+            var config = SpeechHub.Config;
+            if (config != null)
+                EditorGUILayout.LabelField("Game Config switches",
+                    $"master {(config.speechEnabled ? "on" : "off")} · CIVIC {(config.speakCivic ? "on" : "off")} · residents {(config.speakResidents ? "on" : "off")} · narration {(config.speakNarration ? "on" : "off")} · highlight {(config.highlightSpokenWords ? "on" : "off")}");
+            bool muted = EditorGUILayout.Toggle("Muted on this headset", SpeechHub.Muted);
+            if (muted != SpeechHub.Muted) SpeechHub.Muted = muted;
+            if (GUILayout.Button("Stop all speech")) SpeechHub.StopAll();
         }
 
         static void DrawDirector()

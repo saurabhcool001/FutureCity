@@ -35,6 +35,12 @@ namespace TownCouncil.EditorTools
         static readonly Vector3 k_RoleRoomsStart = new(55f, 0f, -45f);
         const float k_RoleRoomSpacing = 30f;
 
+        /// <summary>
+        /// Raised after the scene is built, before it is saved. Optional modules (e.g. speech) use it to add
+        /// their own objects without this builder knowing about them.
+        /// </summary>
+        public static event System.Action<Scene> SceneBuilt;
+
         [MenuItem(TCPaths.MenuRoot + "2. Build Game Scene", priority = 2)]
         public static void BuildScene()
         {
@@ -77,6 +83,8 @@ namespace TownCouncil.EditorTools
                 if (k_TemplateRootsToRemove.Contains(root.name)) Object.DestroyImmediate(root);
 
             new Builder(config).Build(scene);
+            SceneBuilt?.Invoke(scene);
+            SceneRepair.AssignMissingConfig(config, false);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -127,8 +135,10 @@ namespace TownCouncil.EditorTools
                 for (int i = 0; i < m_Scenario.roles.Count; i++) rooms.Add(BuildRoleRoom(i));
                 var roleRoomPanel = BuildRoleRoomPanel(systems.transform, rooms.Count > 0 ? rooms[0].panelAnchor : null);
                 var chamber = BuildChamber(out var seats, out var gallery);
+                BuildEndingPanel(systems.transform, seats);
 
-                Set(director, "m_Config", m_Config);
+                director.AssignConfig(m_Config);
+                EditorUtility.SetDirty(director);
                 Set(director, "m_Fader", fader);
                 Set(director, "m_Rig", rig);
                 Set(director, "m_WelcomeArea", welcome);
@@ -175,7 +185,9 @@ namespace TownCouncil.EditorTools
                 go.transform.SetParent(m_Root, false);
                 var netObj = go.AddComponent<NetworkObject>();
                 var session = go.AddComponent<CouncilSession>();
-                Set(session, "m_Config", m_Config);
+                session.AssignConfig(m_Config);
+                EditorUtility.SetDirty(session);
+                go.AddComponent<CouncilGame>();
 
                 // Keep the rules with the session owner in Distributed Authority sessions.
                 var so = new SerializedObject(netObj);
@@ -218,6 +230,8 @@ namespace TownCouncil.EditorTools
                 welcomePanel.backButton = UIFactory.Button(canvas, "Back", "Back", new Vector2(-300, -250), new Vector2(240, 70));
                 welcomePanel.nextButton = UIFactory.Button(canvas, "Next", "Next", new Vector2(250, -250), new Vector2(340, 70), out var nextLabel, UIFactory.AccentColor);
                 welcomePanel.nextButtonLabel = nextLabel;
+                welcomePanel.bodyText.gameObject.AddComponent<SpeakableText>();
+                VoiceToggle(canvas, new Vector2(400, 270));
 
                 // Joining
                 var connectCanvas = UIFactory.Canvas("Connect Panel", content, new Vector2(1000, 620), 1.15f, new Vector3(0, 1.45f, 1.6f), Quaternion.identity);
@@ -309,6 +323,7 @@ namespace TownCouncil.EditorTools
                 panel.startNowButton = UIFactory.Button(canvas, "Start Now", "Start now with AI", new Vector2(-280, -300), new Vector2(420, 80), UIFactory.AccentColor, 30);
                 panel.watchButton = UIFactory.Button(canvas, "Watch", "Watch from the gallery", new Vector2(-280, -300), new Vector2(420, 80), null, 28);
                 panel.leaveButton = UIFactory.Button(canvas, "Leave", "Leave council", new Vector2(300, -300), new Vector2(340, 80), null, 28);
+                VoiceToggle(canvas, new Vector2(470, 330));
                 return area;
             }
 
@@ -425,18 +440,20 @@ namespace TownCouncil.EditorTools
                 }
 
                 Prim(PrimitiveType.Cylinder, "Round Table", content, new Vector3(0, 0.4f, 0), new Vector3(2.8f, 0.4f, 2.8f), tableMat, true);
-                BuildCityModel(content);
-                BuildCivicOrb(content);
+                var city = BuildCityModel(content);
+                var orb = CivicOrbBuilder.Build(content, new Vector3(0, 1.95f, 0));
+                BuildCivicVoice(content, orb);
 
                 seats = new List<SeatView>();
                 int count = m_Scenario.roles.Count;
                 for (int i = 0; i < count; i++) seats.Add(BuildSeat(content, i, count));
 
-                var status = UIFactory.Canvas("Chamber Panel", content, new Vector2(900, 420), 1.3f, new Vector3(0, 2.8f, 0), Quaternion.identity);
-                status.gameObject.AddComponent<FaceCamera>();
-                var chamberPanel = status.gameObject.AddComponent<ChamberPanel>();
-                chamberPanel.statusText = UIFactory.Text(status, "Status", "", 32, new Vector2(0, 130), new Vector2(860, 120), TextAlignmentOptions.Center, FontStyles.Bold);
-                chamberPanel.seatsText = UIFactory.Text(status, "Seats", "", 26, new Vector2(0, -60), new Vector2(840, 240), TextAlignmentOptions.TopLeft);
+                BuildBoard(content);
+
+                var presenter = content.gameObject.AddComponent<CityPresenter>();
+                presenter.city = city;
+                presenter.dimLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None)
+                    .Where(l => l.type == LightType.Directional).ToArray();
 
                 gallery = new GameObject("Gallery Spawn").transform;
                 gallery.SetParent(area.transform, false);
@@ -446,12 +463,12 @@ namespace TownCouncil.EditorTools
                 return area;
             }
 
-            void BuildCityModel(Transform parent)
+            CityModelView BuildCityModel(Transform parent)
             {
                 var root = new GameObject("City Model").transform;
                 root.SetParent(parent, false);
                 root.localPosition = new Vector3(0, 0.81f, 0);
-                root.gameObject.AddComponent<CityModelView>();
+                var cityView = root.gameObject.AddComponent<CityModelView>();
 
                 Prim(PrimitiveType.Cylinder, "Ground", root, Vector3.zero, new Vector3(2.3f, 0.01f, 2.3f), Mat("City Ground", new Color(0.2f, 0.32f, 0.22f)));
                 Prim(PrimitiveType.Cylinder, "River", root, new Vector3(0.55f, 0.012f, -0.35f), new Vector3(0.7f, 0.002f, 0.18f), Mat("River", new Color(0.2f, 0.4f, 0.7f)));
@@ -483,19 +500,105 @@ namespace TownCouncil.EditorTools
                     var go = new GameObject($"Building · {id.displayName}");
                     go.transform.SetParent(root, false);
                     go.transform.localPosition = spot.pos;
-                    var mesh = Prim(PrimitiveType.Cube, "Mesh", go.transform, new Vector3(0, spot.size.y / 2f + 0.01f, 0), spot.size, buildingMat);
+                    var mesh = Prim(PrimitiveType.Cube, "Mesh", go.transform, new Vector3(0, spot.size.y / 2f + 0.01f, 0), spot.size, buildingMat, true);
+                    mesh.isStatic = false; // its height changes with its state
 
                     var view = go.AddComponent<BuildingView>();
                     view.building = id;
                     view.highlightRenderers = new[] { mesh.GetComponent<Renderer>() };
+                    view.placeholderMesh = mesh.transform;
+
+                    // Touch (or point and select) to hear the people it affects.
+                    var interactable = go.AddComponent<XRSimpleInteractable>();
+                    var audio = go.AddComponent<AudioSource>();
+                    audio.playOnAwake = false;
+                    audio.spatialBlend = 1f;
+                    audio.minDistance = 0.5f;
+                    var touch = go.AddComponent<TouchableBuilding>();
+                    touch.interactable = interactable;
+                    touch.audioSource = audio;
 
                     var label = UIFactory.Canvas("Label", go.transform, new Vector2(300, 60), 0.22f, new Vector3(0, spot.size.y + 0.07f, 0), Quaternion.identity, false);
                     label.gameObject.AddComponent<FaceCamera>();
                     UIFactory.Text(label, "Text", id.displayName, 36, Vector2.zero, new Vector2(300, 60), TextAlignmentOptions.Center, FontStyles.Bold);
                 }
+
+                // Caption for residents' voices, shown above whichever building was touched.
+                var player = root.gameObject.AddComponent<PerspectivePlayer>();
+                var caption = UIFactory.Canvas("Perspective Caption", root, new Vector2(700, 200), 0.6f, new Vector3(0, 0.4f, 0), Quaternion.identity);
+                caption.gameObject.AddComponent<FaceCamera>();
+                player.captionRoot = caption.gameObject;
+                player.captionText = UIFactory.Text(caption, "Text", "", 30, Vector2.zero, new Vector2(660, 180), TextAlignmentOptions.Center);
+                return cityView;
             }
 
-            static void BuildCivicOrb(Transform parent) => CivicOrbBuilder.Build(parent, new Vector3(0, 1.95f, 0));
+            void BuildCivicVoice(Transform parent, CivicOrbView orb)
+            {
+                var go = new GameObject("CIVIC Voice");
+                go.transform.SetParent(parent, false);
+                go.transform.localPosition = new Vector3(0, 1.95f, 0);
+                var audio = go.AddComponent<AudioSource>();
+                audio.playOnAwake = false;
+                audio.spatialBlend = 0.6f;
+
+                var caption = UIFactory.Canvas("CIVIC Caption", go.transform, new Vector2(900, 200), 0.95f, new Vector3(0, 0.38f, 0), Quaternion.identity);
+                caption.gameObject.AddComponent<FaceCamera>();
+
+                var voice = go.AddComponent<CivicVoice>();
+                voice.orb = orb;
+                voice.voice = audio;
+                voice.captionRoot = caption.gameObject;
+                voice.captionText = UIFactory.Text(caption, "Text", "", 32, Vector2.zero, new Vector2(860, 180), TextAlignmentOptions.Center);
+            }
+
+            void BuildBoard(Transform parent)
+            {
+                var board = UIFactory.Canvas("Council Board", parent, new Vector2(1100, 720), 1.5f, new Vector3(0, 2.95f, 0), Quaternion.identity);
+                board.gameObject.AddComponent<FaceCamera>();
+                var panel = board.gameObject.AddComponent<ChamberPanel>();
+
+                var pre = UIFactory.Panel(board, "Before The Game", new Color(0, 0, 0, 0), Vector2.zero, new Vector2(1100, 720));
+                panel.preGameRoot = pre.gameObject;
+                panel.statusText = UIFactory.Text(pre, "Status", "", 36, new Vector2(0, 230), new Vector2(1000, 160), TextAlignmentOptions.Center, FontStyles.Bold);
+                panel.seatsText = UIFactory.Text(pre, "Seats", "", 30, new Vector2(0, -60), new Vector2(980, 380), TextAlignmentOptions.TopLeft);
+
+                var game = UIFactory.Panel(board, "During The Game", new Color(0, 0, 0, 0), Vector2.zero, new Vector2(1100, 720));
+                panel.gameRoot = game.gameObject;
+                panel.headerText = UIFactory.Text(game, "Header", "", 28, new Vector2(-80, 320), new Vector2(880, 44), TextAlignmentOptions.Left, FontStyles.Bold, UIFactory.QuietTextColor);
+                panel.timerText = UIFactory.Text(game, "Timer", "", 64, new Vector2(430, 300), new Vector2(200, 90), TextAlignmentOptions.Right, FontStyles.Bold, UIFactory.AccentColor);
+                panel.titleText = UIFactory.Text(game, "Title", "", 48, new Vector2(0, 230), new Vector2(1000, 110), TextAlignmentOptions.Left, FontStyles.Bold);
+                panel.bodyText = UIFactory.Text(game, "Body", "", 30, new Vector2(0, 20), new Vector2(1000, 300), TextAlignmentOptions.TopLeft);
+                panel.footerText = UIFactory.Text(game, "Footer", "", 24, new Vector2(0, -300), new Vector2(1000, 90), TextAlignmentOptions.Left, FontStyles.Normal, UIFactory.QuietTextColor);
+                game.gameObject.SetActive(false);
+
+                var epilogue = UIFactory.Panel(game, "Epilogue", new Color(0, 0, 0, 0), new Vector2(0, -110), new Vector2(280, 280));
+                panel.epilogueRoot = epilogue.gameObject;
+                var radarGo = new GameObject("Values Fingerprint", typeof(RectTransform), typeof(CanvasRenderer), typeof(RadarChartGraphic));
+                radarGo.transform.SetParent(epilogue, false);
+                UIFactory.Place((RectTransform)radarGo.transform, Vector2.zero, new Vector2(280, 280));
+                panel.radar = radarGo.GetComponent<RadarChartGraphic>();
+                panel.radar.raycastTarget = false;
+                panel.labelDistance = 1.18f;
+                epilogue.gameObject.SetActive(false);
+            }
+
+            void BuildEndingPanel(Transform parent, List<SeatView> seats)
+            {
+                var canvas = UIFactory.Canvas("Your Ending", parent, new Vector2(800, 520), 0.8f, Vector3.zero, Quaternion.identity);
+                var panel = canvas.gameObject.AddComponent<EndingPanel>();
+                var content = UIFactory.Panel(canvas, "Content", new Color(0, 0, 0, 0), Vector2.zero, new Vector2(800, 520));
+                panel.root = content.gameObject;
+                UIFactory.Text(content, "Kicker", "YOUR ENDING", 22, new Vector2(0, 225), new Vector2(740, 30), TextAlignmentOptions.Center, FontStyles.Bold, UIFactory.AccentColor);
+                panel.titleText = UIFactory.Text(content, "Title", "", 40, new Vector2(0, 180), new Vector2(740, 56), TextAlignmentOptions.Center, FontStyles.Bold);
+                panel.endingText = UIFactory.Text(content, "Ending", "", 30, new Vector2(0, 20), new Vector2(720, 240), TextAlignmentOptions.Top);
+                panel.footerText = UIFactory.Text(content, "Footer", "", 24, new Vector2(0, -150), new Vector2(720, 60), TextAlignmentOptions.Center, FontStyles.Italic, UIFactory.QuietTextColor);
+                panel.leaveButton = UIFactory.Button(content, "Leave", "Leave the council", new Vector2(0, -215), new Vector2(360, 64), null, 26);
+                panel.seatSpawns = seats.Select(s => s.PlayerSpawn).ToArray();
+                // The panel hides its content until the epilogue; the canvas background is the content's.
+                Object.DestroyImmediate(canvas.Find("Background").gameObject);
+                var bg = UIFactory.Image(content, "Background", UIFactory.PanelColor, Vector2.zero, new Vector2(800, 520));
+                bg.transform.SetAsFirstSibling();
+            }
 
             SeatView BuildSeat(Transform parent, int index, int count)
             {
@@ -529,10 +632,51 @@ namespace TownCouncil.EditorTools
                 view.nameplate = text;
                 view.aiAvatar = ai;
                 view.chairRenderer = chair.GetComponent<Renderer>();
+
+                // On the table in front of the seat: ballot rows, the role card and its reveal spot.
+                var surface = Mat("Ballot Surface", new Color(0.08f, 0.08f, 0.1f));
+                var glow = Mat("Table Glow", Color.white, 0f, true);
+
+                var trayAnchor = Anchor("Ballot Tray", go.transform, new Vector3(-0.05f, 0.805f, 0.62f));
+                var tray = go.AddComponent<BallotTrayView>();
+                tray.seatIndex = index;
+                tray.trayAnchor = trayAnchor;
+                tray.surfaceMaterial = surface;
+                tray.glowMaterial = glow;
+
+                var secretCanvas = UIFactory.Canvas("Secret Display", go.transform, new Vector2(700, 200), 0.9f, new Vector3(0, 2.5f, -0.1f), Quaternion.identity);
+                secretCanvas.gameObject.AddComponent<FaceCamera>();
+                var secretText = UIFactory.Text(secretCanvas, "Secret", "", 32, Vector2.zero, new Vector2(660, 180), TextAlignmentOptions.Center);
+                secretCanvas.gameObject.SetActive(false);
+
+                var reveal = go.AddComponent<SecretRevealView>();
+                reveal.seatIndex = index;
+                reveal.cardAnchor = Anchor("Card Home", go.transform, new Vector3(0.36f, 0.805f, 0.6f));
+                reveal.revealAnchor = Anchor("Reveal Spot", go.transform, new Vector3(-0.4f, 0.805f, 0.64f));
+                reveal.secretDisplay = secretText;
+                reveal.secretDisplayRoot = secretCanvas.gameObject;
+                reveal.cardMaterial = Mat("Role Card", Color.white, 0f, true);
+                reveal.glowMaterial = glow;
                 return view;
             }
 
             // Helpers ---------------------------------------------------------------------------
+
+            /// <summary>A small "Voice: On/Off" button; hidden automatically when speech isn't installed.</summary>
+            static void VoiceToggle(RectTransform parent, Vector2 position)
+            {
+                var button = UIFactory.Button(parent, "Voice Toggle", "Voice: On", position, new Vector2(200, 56), out var label, null, 22);
+                var toggle = button.gameObject.AddComponent<SpeechToggleButton>();
+                toggle.label = label;
+            }
+
+            static Transform Anchor(string name, Transform parent, Vector3 localPosition)
+            {
+                var t = new GameObject(name).transform;
+                t.SetParent(parent, false);
+                t.localPosition = localPosition;
+                return t;
+            }
 
             ExperienceArea Area(string name, AreaKind kind, Vector3 position, int roleIndex, out Transform content)
             {
@@ -580,6 +724,7 @@ namespace TownCouncil.EditorTools
                 go.transform.localScale = localScale;
                 if (material != null) go.GetComponent<Renderer>().sharedMaterial = material;
                 if (!keepCollider) Object.DestroyImmediate(go.GetComponent<Collider>());
+                else if (type == PrimitiveType.Cylinder) SceneRepair.UseMeshCollider(go, false);
                 go.isStatic = keepCollider;
                 return go;
             }

@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: BuildingState_Upgraded
   m_EditorClassIdentifier: 
   displayName: Upgraded
+  tint: {r: 0.75, g: 0.9, b: 1, a: 1}
+  heightMultiplier: 1.35
+  glow: 0.6

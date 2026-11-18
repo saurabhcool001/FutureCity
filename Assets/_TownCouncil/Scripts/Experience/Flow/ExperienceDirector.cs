@@ -53,6 +53,9 @@ namespace TownCouncil.Experience
         public bool IsTransitioning { get; private set; }
         public GameConfig Config => m_Config;
 
+        /// <summary>Set the Game Config (used by the scene builder and the repair tool).</summary>
+        public void AssignConfig(GameConfig config) => m_Config = config;
+
         /// <summary>Raised after each arrival, once the fade-in has finished.</summary>
         public event Action<Stage> StageEntered;
 
@@ -66,6 +69,9 @@ namespace TownCouncil.Experience
         void Awake()
         {
             Instance = this;
+            SpeechHub.Config = m_Config;
+            if (m_Config == null)
+                Debug.LogError("[Town Council] The Experience Director has no Game Config. Run Town Council > Repair Open Scene, then save the scene.", this);
             if (m_Rig == null) m_Rig = GetComponent<PlayerRig>();
             if (m_Fader == null) m_Fader = GetComponent<ScreenFader>();
         }
