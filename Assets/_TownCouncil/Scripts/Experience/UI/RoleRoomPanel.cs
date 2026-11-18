@@ -35,7 +35,11 @@ namespace TownCouncil.Experience
 
         public void Show(RoleDefinition role)
         {
-            if (role == null) return;
+            if (role == null)
+            {
+                Debug.LogError("[Town Council] Role room panel got no role to show. Check the Council Session's Game Config (Town Council > Repair Open Scene).", this);
+                return;
+            }
             if (titleText != null) titleText.text = role.CardTitle;
             if (jobText != null) jobText.text = role.job;
             if (introText != null) introText.text = role.roomIntro;

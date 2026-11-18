@@ -42,6 +42,17 @@ Steps 2–4 repeat for each policy when a round's **Presentation** is *One After
 
 Pacing, CIVIC's reaction lines and "show votes live" are in **Game Config**. The **Debug Window** can skip phases, vote and reveal as this headset without VR, and shows meters and flags.
 
+## Speech (optional)
+
+CIVIC, residents and important text (the welcome pages) can be spoken aloud with each word highlighted. Speech is fully optional:
+
+1. **Package:** install `com.saurabh.futurecity.offlinetts` (Package Manager ▸ + ▸ Add package from tarball). Then run FutureCity ▸ Plugins ▸ OfflineTTS ▸ **Download Supertonic 3 Models** and **Create or Locate Settings Asset**. Without the package, the `TownCouncil.Speech` assembly doesn't compile and the game shows captions only.
+2. **Scene:** **Town Council > 2. Build Game Scene** adds speech automatically when the package is installed. For an existing scene, use **Town Council > Speech > Add Speech To Open Scene**. **Remove Speech From Open Scene** takes it out again.
+3. **Switches (Game Config):** `speechEnabled` (master), `speakCivic`, `speakResidents`, `speakNarration`, `highlightSpokenWords`.
+4. **At runtime:** the **Voice: On/Off** button on the welcome and foyer panels mutes this headset (remembered between sessions). The Debug Window also has a mute toggle. From code, set `SpeechHub.Muted`.
+
+Recorded or baked audio on a line (`DialogueLine.audio` or `PerspectiveClip.audio`) always plays instead of live speech. Voices per speaker (CIVIC, narrator, residents) are set on the **Speech (TTS)** object. To read more text aloud, add **Speakable Text** to any TextMeshPro text.
+
 ## More policies per round
 
 Select a Round asset and press **Add policy**, or drag more policies into its list. The new policy gets its three outcomes automatically. Nothing in code assumes two.
@@ -53,6 +64,7 @@ Select a Round asset and press **Add policy**, or drag more policies into its li
 | `TownCouncil.Core` | Data assets, vote rules, AI brains, `CouncilRecord` (meters, city, flags, CIVIC stats from the history). Plain C#, no networking |
 | `TownCouncil.Networking` | `CouncilSession`: seats, role claims, countdown, AI fill, secret reveals. `CouncilGame`: phases, votes, AI votes, results history |
 | `TownCouncil.Experience` | Director, fades, areas, panels, cards, seats, city model, CIVIC orb |
+| `TownCouncil.Speech` (+ `.Editor`) | Optional: connects `SpeechHub` to FutureCity Offline TTS. Compiles only when that package is installed |
 | `TownCouncil.Editor` | Sample data, scene builder, validator, debug window, inspectors |
 
 Everything the scene builder makes is placeholder geometry. Replace it freely: put a role's room prefab in `RoleDefinition.roomEnvironmentPrefab` and rebuild, or edit the scene directly.

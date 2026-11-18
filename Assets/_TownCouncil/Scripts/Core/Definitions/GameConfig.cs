@@ -47,6 +47,18 @@ namespace TownCouncil.Core
         [TextArea] public string civicOnWake = "Good evening, council. Let us begin.";
         [TextArea] public string civicOnEpilogue = "Thank you for your service, council. This is the town you chose.";
 
+        [Header("Speech (needs the FutureCity Offline TTS package)")]
+        [Tooltip("Master switch. Off = captions only, even when the TTS package is installed.")]
+        public bool speechEnabled = true;
+        [Tooltip("CIVIC speaks its lines aloud.")]
+        public bool speakCivic = true;
+        [Tooltip("Residents speak when a building is touched (lines without recorded audio).")]
+        public bool speakResidents = true;
+        [Tooltip("Important on-screen text marked as speakable (e.g. the welcome pages) is read aloud.")]
+        public bool speakNarration = true;
+        [Tooltip("Highlight each word on screen as it is spoken.")]
+        public bool highlightSpokenWords = true;
+
         [Header("Transitions")]
         [Min(0.05f)] public float fadeOutSeconds = 0.8f;
         [Min(0.05f)] public float fadeInSeconds = 1.0f;

@@ -35,6 +35,12 @@ namespace TownCouncil.EditorTools
         static readonly Vector3 k_RoleRoomsStart = new(55f, 0f, -45f);
         const float k_RoleRoomSpacing = 30f;
 
+        /// <summary>
+        /// Raised after the scene is built, before it is saved. Optional modules (e.g. speech) use it to add
+        /// their own objects without this builder knowing about them.
+        /// </summary>
+        public static event System.Action<Scene> SceneBuilt;
+
         [MenuItem(TCPaths.MenuRoot + "2. Build Game Scene", priority = 2)]
         public static void BuildScene()
         {
@@ -77,6 +83,8 @@ namespace TownCouncil.EditorTools
                 if (k_TemplateRootsToRemove.Contains(root.name)) Object.DestroyImmediate(root);
 
             new Builder(config).Build(scene);
+            SceneBuilt?.Invoke(scene);
+            SceneRepair.AssignMissingConfig(config, false);
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
@@ -129,7 +137,8 @@ namespace TownCouncil.EditorTools
                 var chamber = BuildChamber(out var seats, out var gallery);
                 BuildEndingPanel(systems.transform, seats);
 
-                Set(director, "m_Config", m_Config);
+                director.AssignConfig(m_Config);
+                EditorUtility.SetDirty(director);
                 Set(director, "m_Fader", fader);
                 Set(director, "m_Rig", rig);
                 Set(director, "m_WelcomeArea", welcome);
@@ -176,7 +185,8 @@ namespace TownCouncil.EditorTools
                 go.transform.SetParent(m_Root, false);
                 var netObj = go.AddComponent<NetworkObject>();
                 var session = go.AddComponent<CouncilSession>();
-                Set(session, "m_Config", m_Config);
+                session.AssignConfig(m_Config);
+                EditorUtility.SetDirty(session);
                 go.AddComponent<CouncilGame>();
 
                 // Keep the rules with the session owner in Distributed Authority sessions.
@@ -220,6 +230,8 @@ namespace TownCouncil.EditorTools
                 welcomePanel.backButton = UIFactory.Button(canvas, "Back", "Back", new Vector2(-300, -250), new Vector2(240, 70));
                 welcomePanel.nextButton = UIFactory.Button(canvas, "Next", "Next", new Vector2(250, -250), new Vector2(340, 70), out var nextLabel, UIFactory.AccentColor);
                 welcomePanel.nextButtonLabel = nextLabel;
+                welcomePanel.bodyText.gameObject.AddComponent<SpeakableText>();
+                VoiceToggle(canvas, new Vector2(400, 270));
 
                 // Joining
                 var connectCanvas = UIFactory.Canvas("Connect Panel", content, new Vector2(1000, 620), 1.15f, new Vector3(0, 1.45f, 1.6f), Quaternion.identity);
@@ -311,6 +323,7 @@ namespace TownCouncil.EditorTools
                 panel.startNowButton = UIFactory.Button(canvas, "Start Now", "Start now with AI", new Vector2(-280, -300), new Vector2(420, 80), UIFactory.AccentColor, 30);
                 panel.watchButton = UIFactory.Button(canvas, "Watch", "Watch from the gallery", new Vector2(-280, -300), new Vector2(420, 80), null, 28);
                 panel.leaveButton = UIFactory.Button(canvas, "Leave", "Leave council", new Vector2(300, -300), new Vector2(340, 80), null, 28);
+                VoiceToggle(canvas, new Vector2(470, 330));
                 return area;
             }
 
@@ -649,6 +662,14 @@ namespace TownCouncil.EditorTools
 
             // Helpers ---------------------------------------------------------------------------
 
+            /// <summary>A small "Voice: On/Off" button; hidden automatically when speech isn't installed.</summary>
+            static void VoiceToggle(RectTransform parent, Vector2 position)
+            {
+                var button = UIFactory.Button(parent, "Voice Toggle", "Voice: On", position, new Vector2(200, 56), out var label, null, 22);
+                var toggle = button.gameObject.AddComponent<SpeechToggleButton>();
+                toggle.label = label;
+            }
+
             static Transform Anchor(string name, Transform parent, Vector3 localPosition)
             {
                 var t = new GameObject(name).transform;
@@ -703,6 +724,7 @@ namespace TownCouncil.EditorTools
                 go.transform.localScale = localScale;
                 if (material != null) go.GetComponent<Renderer>().sharedMaterial = material;
                 if (!keepCollider) Object.DestroyImmediate(go.GetComponent<Collider>());
+                else if (type == PrimitiveType.Cylinder) SceneRepair.UseMeshCollider(go, false);
                 go.isStatic = keepCollider;
                 return go;
             }

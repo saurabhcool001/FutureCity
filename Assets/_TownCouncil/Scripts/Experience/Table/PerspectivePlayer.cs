@@ -11,11 +11,14 @@ namespace TownCouncil.Experience
         public TMP_Text captionText;
         [Tooltip("Caption time when a clip has no audio: seconds per word.")]
         public float secondsPerWord = 0.38f;
+        [Tooltip("Residents without recorded audio are spoken by the TTS module (when installed and switched on).")]
+        public bool speakWithoutAudio = true;
 
         public static PerspectivePlayer Instance { get; private set; }
 
         float m_HideAt;
         AudioSource m_Playing;
+        string m_SpeakingId;
 
         void Awake()
         {
@@ -31,6 +34,8 @@ namespace TownCouncil.Experience
         public void Play(BuildingId building, PerspectiveClip clip, AudioSource source, Transform at)
         {
             if (m_Playing != null) m_Playing.Stop();
+            if (m_SpeakingId != null) SpeechHub.Stop(m_SpeakingId);
+            m_SpeakingId = null;
 
             string speaker = clip != null ? clip.speaker : building.displayName;
             string text = clip != null ? clip.subtitle : building.description;
@@ -46,6 +51,13 @@ namespace TownCouncil.Experience
             }
 
             if (captionText != null) captionText.text = $"<b>{speaker}</b>\n“{text}”";
+
+            bool hasAudio = clip != null && clip.audio != null && source != null;
+            if (!hasAudio && speakWithoutAudio)
+            {
+                var id = $"Resident:{speaker}";
+                if (SpeechHub.Speak(id, SpeechChannel.Resident, text, captionText, at)) m_SpeakingId = id;
+            }
             if (captionRoot != null)
             {
                 captionRoot.SetActive(true);
@@ -56,6 +68,7 @@ namespace TownCouncil.Experience
 
         void Update()
         {
+            if (m_SpeakingId != null && SpeechHub.IsSpeaking(m_SpeakingId)) m_HideAt = Mathf.Max(m_HideAt, Time.time + 1f);
             if (captionRoot != null && captionRoot.activeSelf && Time.time >= m_HideAt) captionRoot.SetActive(false);
         }
     }

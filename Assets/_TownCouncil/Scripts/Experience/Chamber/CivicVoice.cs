@@ -23,6 +23,14 @@ namespace TownCouncil.Experience
         public float secondsPerWord = 0.36f;
         public float minLineSeconds = 2.5f;
 
+        [Header("Speech (when the TTS module is installed and switched on)")]
+        [Tooltip("Speaker id used for CIVIC's voice; voices are set on the speech output.")]
+        public string speakerId = "CIVIC";
+        [Tooltip("Longest wait for one spoken line before moving on.")]
+        public float maxSpokenLineSeconds = 30f;
+        [Tooltip("Pulse the orb on each spoken word.")]
+        public bool pulseOnWords = true;
+
         CouncilGame m_Game;
         Coroutine m_Speaking;
 
@@ -44,8 +52,17 @@ namespace TownCouncil.Experience
             m_Game.PhaseChanged += OnPhaseChanged;
         }
 
+        void OnEnable() => SpeechHub.WordSpoken += OnWordSpoken;
+
+        void OnWordSpoken(string id, int _)
+        {
+            if (pulseOnWords && id == speakerId && orb != null) orb.Pulse(0.45f);
+        }
+
         void OnDisable()
         {
+            SpeechHub.WordSpoken -= OnWordSpoken;
+            SpeechHub.Stop(speakerId);
             if (orb != null) orb.IsSpeaking = false;
             if (captionRoot != null) captionRoot.SetActive(false);
             m_Speaking = null;
@@ -60,6 +77,7 @@ namespace TownCouncil.Experience
         {
             if (!isActiveAndEnabled) return;
             if (m_Speaking != null) StopCoroutine(m_Speaking);
+            SpeechHub.Stop(speakerId);
             m_Speaking = StartCoroutine(SpeakFor(phase));
         }
 
@@ -92,9 +110,20 @@ namespace TownCouncil.Experience
             float duration = Mathf.Max(minLineSeconds, line.Text.Split(' ').Length * secondsPerWord);
             if (line.Audio != null && voice != null)
             {
+                // Recorded or baked audio always wins over live speech.
                 voice.clip = line.Audio;
                 voice.Play();
                 duration = Mathf.Max(duration, line.Audio.length + 0.3f);
+            }
+            else if (SpeechHub.Speak(speakerId, SpeechChannel.Civic, line.Text, captionText, voice != null ? voice.transform : transform))
+            {
+                // Spoken by the TTS module: wait until it finishes (generation + playback), within limits.
+                float start = Time.time;
+                yield return null;
+                while (SpeechHub.IsSpeaking(speakerId) && Time.time - start < maxSpokenLineSeconds) yield return null;
+                float elapsed = Time.time - start;
+                yield return new WaitForSeconds(Mathf.Max(0.3f, minLineSeconds - elapsed));
+                yield break;
             }
             yield return new WaitForSeconds(duration);
         }

@@ -1,0 +1,37 @@
+{
+    "name": "TownCouncil.Speech.Editor",
+    "rootNamespace": "TownCouncil.Speech.EditorTools",
+    "references": [
+        "TownCouncil.Core",
+        "TownCouncil.Experience",
+        "TownCouncil.Speech",
+        "TownCouncil.Editor",
+        "SaurabhFutureCity.OfflineTTS",
+        "SaurabhFutureCity.OfflineTTS.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FUTURECITY_TTS",
+        "FUTURECITY_ORT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.saurabh.futurecity.offlinetts",
+            "expression": "1.0.0",
+            "define": "FUTURECITY_TTS"
+        },
+        {
+            "name": "com.github.asus4.onnxruntime",
+            "expression": "0.4.0",
+            "define": "FUTURECITY_ORT"
+        }
+    ],
+    "noEngineReferences": false
+}

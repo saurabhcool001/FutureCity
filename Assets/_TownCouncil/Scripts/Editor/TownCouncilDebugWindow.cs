@@ -44,6 +44,7 @@ namespace TownCouncil.EditorTools
                 DrawAIPreview(session);
             }
             DrawDirector();
+            DrawSpeech();
             EditorGUILayout.EndScrollView();
         }
 
@@ -176,6 +177,26 @@ namespace TownCouncil.EditorTools
                 }
                 EditorGUILayout.LabelField(policy.title, line.Count > 0 ? string.Join(", ", line) : "No AI seats yet", EditorStyles.wordWrappedLabel);
             }
+        }
+
+        static void DrawSpeech()
+        {
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Speech", EditorStyles.boldLabel);
+            if (!SpeechHub.IsInstalled)
+            {
+                EditorGUILayout.HelpBox("Speech isn't active: install the FutureCity Offline TTS package, then use " +
+                                        "Town Council > Speech > Add Speech To Open Scene (or rebuild the scene).", MessageType.None);
+                return;
+            }
+            EditorGUILayout.LabelField("Voice model", SpeechHub.IsReady ? "Loaded" : "Loading…");
+            var config = SpeechHub.Config;
+            if (config != null)
+                EditorGUILayout.LabelField("Game Config switches",
+                    $"master {(config.speechEnabled ? "on" : "off")} · CIVIC {(config.speakCivic ? "on" : "off")} · residents {(config.speakResidents ? "on" : "off")} · narration {(config.speakNarration ? "on" : "off")} · highlight {(config.highlightSpokenWords ? "on" : "off")}");
+            bool muted = EditorGUILayout.Toggle("Muted on this headset", SpeechHub.Muted);
+            if (muted != SpeechHub.Muted) SpeechHub.Muted = muted;
+            if (GUILayout.Button("Stop all speech")) SpeechHub.StopAll();
         }
 
         static void DrawDirector()

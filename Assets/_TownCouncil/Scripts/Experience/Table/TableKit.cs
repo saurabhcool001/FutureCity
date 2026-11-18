@@ -18,7 +18,20 @@ namespace TownCouncil.Experience
             go.transform.localPosition = localPosition;
             go.transform.localScale = localScale;
             if (material != null) go.GetComponent<Renderer>().sharedMaterial = material;
-            if (!keepCollider) Object.Destroy(go.GetComponent<Collider>());
+            var collider = go.GetComponent<Collider>();
+            if (!keepCollider)
+            {
+                Object.DestroyImmediate(collider);
+            }
+            else if (type == PrimitiveType.Cylinder)
+            {
+                // A cylinder's default capsule collider becomes a ball when the cylinder is flat (a token);
+                // use the real shape instead. Convex so it works on a moving rigidbody.
+                Object.DestroyImmediate(collider);
+                var mesh = go.AddComponent<MeshCollider>();
+                mesh.sharedMesh = go.GetComponent<MeshFilter>().sharedMesh;
+                mesh.convex = true;
+            }
             return go;
         }
 
@@ -40,6 +53,8 @@ namespace TownCouncil.Experience
             body.mass = 0.05f;
             body.interpolation = RigidbodyInterpolation.Interpolate;
             body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+            // If it ever overlaps something, ease it out instead of firing it across the room.
+            body.maxDepenetrationVelocity = 0.3f;
             go.AddComponent<SocketKey>().key = key;
             var grab = go.AddComponent<XRGrabInteractable>();
             grab.throwOnDetach = false;

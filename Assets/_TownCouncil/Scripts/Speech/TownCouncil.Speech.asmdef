@@ -1,0 +1,34 @@
+{
+    "name": "TownCouncil.Speech",
+    "rootNamespace": "TownCouncil.Speech",
+    "references": [
+        "TownCouncil.Core",
+        "TownCouncil.Experience",
+        "SaurabhFutureCity.OfflineTTS",
+        "SaurabhFutureCity.OfflineTTS.TMP",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FUTURECITY_TTS",
+        "FUTURECITY_ORT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.saurabh.futurecity.offlinetts",
+            "expression": "1.0.0",
+            "define": "FUTURECITY_TTS"
+        },
+        {
+            "name": "com.github.asus4.onnxruntime",
+            "expression": "0.4.0",
+            "define": "FUTURECITY_ORT"
+        }
+    ],
+    "noEngineReferences": false
+}
