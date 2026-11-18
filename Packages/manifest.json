@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "com.github.asus4.onnxruntime": "0.4.9",
     "com.saurabh.futurecity.offlinetts": "file:Tarballs/com.saurabh.futurecity.offlinetts-1.0.0.tgz",
     "com.unity.burst": "1.8.28",
+    "com.unity.cloud.gltfast": "6.21.0",
     "com.unity.feature.development": "1.0.2",
     "com.unity.ide.rider": "3.0.39",
     "com.unity.inputsystem": "1.18.0",
@@ -54,8 +56,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.github.asus4.onnxruntime": "0.4.9"
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {
