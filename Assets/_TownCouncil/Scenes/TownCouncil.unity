@@ -523,7 +523,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8787078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abfc1390f00e9747b413e05e734e0aa, type: 3}
   m_Name: 
@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Placeholder: A&E staff room'
+  m_text: A&E room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,
@@ -5661,7 +5661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOUR HIDDEN GOAL
+  m_text: Priorities
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,
@@ -7198,7 +7198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Go to the council chamber
+  m_text: Proceed to the meeting
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,
@@ -10200,7 +10200,7 @@ MonoBehaviour:
   watchButton: {fileID: 972313445}
   hintPickCard: Pick up a role card from the table.
   hintWaiting: "Card accepted. Heading to your room\u2026"
-  hintWatching: This council has already started. You can watch from the gallery.
+  hintWatching: This session has already started. You can watch from the gallery.
 --- !u!114 &380449753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11164,7 +11164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &406855413
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12910,7 +12910,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491813984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abfc1390f00e9747b413e05e734e0aa, type: 3}
   m_Name: 
@@ -25956,7 +25956,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848809086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abfc1390f00e9747b413e05e734e0aa, type: 3}
   m_Name: 
@@ -35308,7 +35308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1206204461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37846,7 +37846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Placeholder: Politician room'
+  m_text: Politician room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,
@@ -41146,7 +41146,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387422896}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abfc1390f00e9747b413e05e734e0aa, type: 3}
   m_Name: 
@@ -55350,7 +55350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1931795028
 RectTransform:
   m_ObjectHideFlags: 0
@@ -57781,7 +57781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Placeholder: Bedroom on Riverside Street'
+  m_text: Student room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,
@@ -58538,7 +58538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Placeholder: Start-up office'
+  m_text: AI company CEO office
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53db18e97d0b694d987d6439491011d, type: 2}
   m_sharedMaterial: {fileID: -4177078119125332268, guid: b53db18e97d0b694d987d6439491011d,

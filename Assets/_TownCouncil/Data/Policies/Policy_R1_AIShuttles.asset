@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
   m_Name: Policy_R1_AIShuttles
   m_EditorClassIdentifier: 
-  title: '[Draft] Replace night buses with AI shuttles'
+  title: Replace night buses with AI shuttles
   summary: Swap the night bus routes for AI-managed transports.
   civicPitch: {fileID: 11400000, guid: dddafe7533f94ca4e9d47e8ee28a10b7, type: 2}
   affectedBuildings:

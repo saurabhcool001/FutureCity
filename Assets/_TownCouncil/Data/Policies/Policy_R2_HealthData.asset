@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
   m_Name: Policy_R2_HealthData
   m_EditorClassIdentifier: 
-  title: '[Draft] Share residents'' health records with CIVIC'
+  title: Share residents' health records with CIVIC
   summary: Give AI access to medical records so it can predict demand and plan services.
   civicPitch: {fileID: 11400000, guid: 1c925163fc9a5914c900ead5297812d6, type: 2}
   affectedBuildings:

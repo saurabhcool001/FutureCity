@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
   m_Name: Policy_R3_AITutors
   m_EditorClassIdentifier: 
-  title: '[Draft] AI tutors replace the college''s evening classes'
+  title: AI tutors replace the college's evening classes
   summary: Evening classes move to personal AI tutors on residents' own devices.
   civicPitch: {fileID: 11400000, guid: 1322eefac671c684c8df7a20f6c14dee, type: 2}
   affectedBuildings:
@@ -33,3 +33,4 @@ MonoBehaviour:
     choice: 2
   - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
     choice: 3
+  aiRevealRoles: []
