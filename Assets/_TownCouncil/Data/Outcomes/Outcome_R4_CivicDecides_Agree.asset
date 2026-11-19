@@ -23,9 +23,10 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
     state: {fileID: 11400000, guid: 717264b26f30f934082b22ae8221d234, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: CIVIC now decides alone
+  headline: AI now decides alone
   diaryAuthor: Sam
-  diaryYear: 2055
-  diaryText: There's no council any more. I'm not sure who I'd even complain to.
+  diaryYear: 2043
+  diaryText: Scientists said AI is making better decision than human. But I'm not
+    sure I want them to make all the decisions for me.
   endingFlags:
   - civic_decides

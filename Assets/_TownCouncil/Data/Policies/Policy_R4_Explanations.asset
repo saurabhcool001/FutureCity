@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Policy_R4_Explanations
   m_EditorClassIdentifier: 
   title: '[Draft] Publish a plain-language reason for every CIVIC decision'
-  summary: Every CIVIC decision comes with a short public explanation anyone can
-    read.
+  summary: Every AI decision comes with a short public explanation anyone can read.
   civicPitch: {fileID: 11400000, guid: 881e862d2165b29488ccb16d26f6a0e1, type: 2}
   affectedBuildings:
   - {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
@@ -33,3 +32,4 @@ MonoBehaviour:
     choice: 1
   - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
     choice: 1
+  aiRevealRoles: []

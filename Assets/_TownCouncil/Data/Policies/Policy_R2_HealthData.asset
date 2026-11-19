@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Policy_R2_HealthData
   m_EditorClassIdentifier: 
   title: '[Draft] Share residents'' health records with CIVIC'
-  summary: Give CIVIC access to GP records so it can predict demand and plan services.
+  summary: Give AI access to medical records so it can predict demand and plan services.
   civicPitch: {fileID: 11400000, guid: 1c925163fc9a5914c900ead5297812d6, type: 2}
   affectedBuildings:
   - {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
@@ -32,3 +32,4 @@ MonoBehaviour:
     choice: 3
   - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
     choice: 2
+  aiRevealRoles: []

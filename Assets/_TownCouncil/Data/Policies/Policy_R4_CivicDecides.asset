@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: Policy_R4_CivicDecides
   m_EditorClassIdentifier: 
   title: Let CIVIC decide automatically
-  summary: Annual council sessions end. CIVIC makes every decision; citizens can
-    still view the results.
+  summary: AI makes every governmental decision; citizens can still view the results.
   civicPitch: {fileID: 11400000, guid: ef59625f71d9f6042bb82f145ac230d7, type: 2}
   affectedBuildings:
   - {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
   decisionSeconds: 0
   requiresMajorityToOverride: 1
-  amendWording: "CIVIC decides small budget items; anything over \xA3100,000 still
-    comes to the council."
+  amendWording: "AI decides small budget items; anything over \xA3100,000 still comes
+    to the citizens."
   onAgree: {fileID: 11400000, guid: d70cfd62fb6e4a44ea29a82cc9dc4775, type: 2}
   onDisagree: {fileID: 11400000, guid: de178480121fded449c6cc9c4e488391, type: 2}
   onAmend: {fileID: 11400000, guid: 9e5f0f10fa7ba0641913a83be30ea2ab, type: 2}

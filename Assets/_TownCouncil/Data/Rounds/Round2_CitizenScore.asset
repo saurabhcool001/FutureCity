@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b54a2dcdfd52a46bbfa3169c6ce787, type: 3}
   m_Name: Round2_CitizenScore
   m_EditorClassIdentifier: 
-  year: 2048
+  year: 2043
   title: The Citizen Score
   lesson: One voice with the right information can change everything. Algorithmic
     bias and privacy.

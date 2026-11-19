@@ -20,6 +20,6 @@ MonoBehaviour:
   cityChanges: []
   headline: Health records stay private
   diaryAuthor: Leo
-  diaryYear: 2049
+  diaryYear: 2043
   diaryText: Our health model is guessing blind.
   endingFlags: []

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Line_R3_CareRobots_Pitch
   m_EditorClassIdentifier: 
   speaker: CIVIC
-  subtitle: Robots replace care staff. The savings pay for the nurses A&E needs.
+  subtitle: Save 50% budget on healthcare, we can deploy AI robots in all A&E in
+    2 years, and increase social housing.
   audio: {fileID: 0}

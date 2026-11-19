@@ -18,8 +18,8 @@ MonoBehaviour:
   - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
     amount: 1
   cityChanges: []
-  headline: Night buses stay, at a cost
+  headline: Night buses stay.
   diaryAuthor: Leo
-  diaryYear: 2047
-  diaryText: We lost the shuttle pilot to the next town over.
+  diaryYear: 2043
+  diaryText: Budget for automated cars reduces.
   endingFlags: []

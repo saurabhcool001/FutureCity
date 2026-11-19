@@ -28,9 +28,10 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
     state: {fileID: 11400000, guid: 0300199ff96743a46a8a7a1693455a61, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: Robots arrive at Elmwood; A&E hires 40 nurses
+  headline: A&E waiting time increases, but promised to decrease 10 times more next
+    year. 10% more social housing.
   diaryAuthor: Edith
-  diaryYear: 2052
-  diaryText: The robot is very kind. I haven't heard a human laugh in eleven days.
+  diaryYear: 2043
+  diaryText: A crisis in A&E thes days.
   endingFlags:
   - care_robots

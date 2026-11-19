@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Role_Leo
   m_EditorClassIdentifier: 
   displayName: Leo
-  age: 29
-  job: Start-up founder
+  age: 38
+  job: AI Company CEO
   portrait: {fileID: 0}
   accentColor: {r: 0.3, g: 0.6, b: 0.95, a: 1}
-  hiddenGoal: Win CIVIC contracts for your company.
-  secret: Your company helped build CIVIC.
+  hiddenGoal: Fight for the benefit of AI companies
+  secret: 
   roomEnvironmentPrefab: {fileID: 0}
-  roomIntro: Your office in the Tech Hub. A CIVIC contract renewal sits on your screen.
+  roomIntro: Your office in the Tech Hub. An AI policy making R&D contract sits on
+    your screen.
   valuePriorities:
   - meter: {fileID: 11400000, guid: e714c7ac73257ae42864c50792d54318, type: 2}
     weight: 2
@@ -30,12 +31,11 @@ MonoBehaviour:
   defaultStance: 1
   endings:
   - requiredFlags: []
-    text: Leo's company kept building for CIVIC, one contract at a time.
+    text: Leo's company kept building for AI tech, one contract at a time.
   - requiredFlags:
     - civic_decides
-    text: CIVIC now runs Newhaven alone, on code Leo's company wrote. The company
-      is thriving. The town hall is empty.
+    text: 'AI now runs the society alone, on code Leo''s company wrote. '
   - requiredFlags:
     - humans_decide
-    text: The council kept its say. Leo's company now builds the tools that explain
-      CIVIC's decisions to residents.
+    text: "The citizens kept their autonomy. Leo's company now builds the tools that
+      explain AI\xB4s decisions to the citizens."

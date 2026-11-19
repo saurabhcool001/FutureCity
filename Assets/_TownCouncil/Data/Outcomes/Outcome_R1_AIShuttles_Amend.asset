@@ -23,7 +23,7 @@ MonoBehaviour:
     customTransitionPrefab: {fileID: 0}
   headline: Shuttles arrive alongside one staffed night bus
   diaryAuthor: Edith
-  diaryYear: 2047
-  diaryText: The driver knows my stop. I still ring him on Thursdays.
+  diaryYear: 2043
+  diaryText: The driver knows my stop. I can ring him ..
   endingFlags:
   - shuttles_mixed

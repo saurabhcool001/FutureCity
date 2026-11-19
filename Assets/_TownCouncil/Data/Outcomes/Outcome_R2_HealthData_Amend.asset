@@ -20,7 +20,7 @@ MonoBehaviour:
   cityChanges: []
   headline: Anonymised health data shared, with an opt-out
   diaryAuthor: Sam
-  diaryYear: 2049
+  diaryYear: 2043
   diaryText: Opted out. Took two minutes. Mum didn't know you could.
   endingFlags:
   - health_data_optout

@@ -28,7 +28,7 @@ MonoBehaviour:
     customTransitionPrefab: {fileID: 0}
   headline: Library cuts its hours; screenings go ahead on a smaller budget
   diaryAuthor: Sam
-  diaryYear: 2046
+  diaryYear: 2043
   diaryText: Library's only open three nights now, but it's still ours.
   endingFlags:
   - library_reduced

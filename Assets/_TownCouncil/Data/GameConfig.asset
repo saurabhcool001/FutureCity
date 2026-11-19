@@ -19,6 +19,25 @@ MonoBehaviour:
   aiMode: 0
   defaultDecisionSeconds: 60
   allVotedShortcutSeconds: 5
+  showVotesLive: 0
+  aiVoteWindow: {x: 0.2, y: 0.7}
+  councilWakeSeconds: 5
+  roundIntroSeconds: 8
+  proposalSeconds: 10
+  resolveSeconds: 6
+  futureViewSeconds: 14
+  epilogueYearsAfterLastRound: 1
+  civicOnAgree: Thank you. I will proceed.
+  civicOnDisagree: Noted. The policy is withdrawn.
+  civicOnAmend: Understood. I will implement the amended version.
+  civicOnDeadlock: You could not agree. I will proceed as recommended.
+  civicOnWake: Good evening, citizen. Let us begin.
+  civicOnEpilogue: Thank you for your service, citizen. This is the town you chose.
+  speechEnabled: 1
+  speakCivic: 1
+  speakResidents: 1
+  speakNarration: 1
+  highlightSpokenWords: 1
   fadeOutSeconds: 0.8
   fadeInSeconds: 1
   holdOnBlackSeconds: 0.4

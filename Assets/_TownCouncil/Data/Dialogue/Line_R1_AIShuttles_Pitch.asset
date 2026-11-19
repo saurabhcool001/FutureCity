@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Line_R1_AIShuttles_Pitch
   m_EditorClassIdentifier: 
   speaker: CIVIC
-  subtitle: On-demand shuttles cost 40% less and arrive in under ten minutes.
+  subtitle: Automated on-demand shuttles cost 40% less and arrive in under ten minutes.
   audio: {fileID: 0}

@@ -22,7 +22,7 @@ MonoBehaviour:
   decisionSeconds: 0
   requiresMajorityToOverride: 0
   amendWording: Keep the score, but remove postcode data and add appeals heard by
-    a person.
+    human.
   onAgree: {fileID: 11400000, guid: 3be52b022dad4544d83ac4050e3782b0, type: 2}
   onDisagree: {fileID: 11400000, guid: 50b6e0c684781004490fca0dd23e9fab, type: 2}
   onAmend: {fileID: 11400000, guid: 41a361c973d0de3418e009cebee946c1, type: 2}

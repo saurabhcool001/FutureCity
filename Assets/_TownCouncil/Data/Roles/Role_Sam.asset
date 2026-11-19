@@ -17,10 +17,10 @@ MonoBehaviour:
   job: Student
   portrait: {fileID: 0}
   accentColor: {r: 0.95, g: 0.65, b: 0.2, a: 1}
-  hiddenGoal: Protect the library.
-  secret: Your family lives on Riverside Street, a 'high-risk' postcode.
+  hiddenGoal: Look for your own future. House pricing, job opportunities...
+  secret: 
   roomEnvironmentPrefab: {fileID: 0}
-  roomIntro: Your bedroom on Riverside Street. Revision notes cover the desk.
+  roomIntro: Your bedroom in the New City. Revision notes cover the desk.
   valuePriorities:
   - meter: {fileID: 11400000, guid: d5c3010366a72564fa02ae51da0d02e2, type: 2}
     weight: 1.5
@@ -32,8 +32,8 @@ MonoBehaviour:
   defaultStance: 2
   endings:
   - requiredFlags: []
-    text: Sam finished school in Newhaven and still walks past the old town hall
-      on the way home.
+    text: Sam finished college and is learning to live with artificial superintelligent
+      like everyone else.
   - requiredFlags:
     - library_closed
     text: "With the library gone, Sam revised in caf\xE9s and on night buses, and

@@ -21,9 +21,9 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
     state: {fileID: 11400000, guid: 0300199ff96743a46a8a7a1693455a61, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: CIVIC handles small items; big decisions stay with the council
+  headline: AI handles small items; big decisions stay with the citizens
   diaryAuthor: Amara
-  diaryYear: 2055
+  diaryYear: 2043
   diaryText: Fewer meetings, and we still get the say that matters.
   endingFlags:
   - shared_control

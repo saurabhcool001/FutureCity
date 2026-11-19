@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Policy_R1_CloseLibrary
   m_EditorClassIdentifier: 
   title: Close the library to fund health screenings
-  summary: Close Newhaven Library and move its budget to a health-screening programme.
+  summary: Close all libraries and move its budget to a health-screening programme.
   civicPitch: {fileID: 11400000, guid: 03c9a941d5799ce418016f9688dd5378, type: 2}
   affectedBuildings:
   - {fileID: 11400000, guid: f792e71f1e0af794d91fcc3a5167acf1, type: 2}
@@ -34,3 +34,4 @@ MonoBehaviour:
     choice: 2
   - role: {fileID: 11400000, guid: 0c3b904d2e352164b876bc281262c1e9, type: 2}
     choice: 2
+  aiRevealRoles: []

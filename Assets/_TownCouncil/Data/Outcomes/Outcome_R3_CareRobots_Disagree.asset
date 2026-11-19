@@ -20,7 +20,7 @@ MonoBehaviour:
   cityChanges: []
   headline: Care staff stay; A&E waits grow
   diaryAuthor: Amara
-  diaryYear: 2052
+  diaryYear: 2043
   diaryText: Six-hour waits again. We're running on fumes.
   endingFlags:
   - care_kept

@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743d40e98a128194c9fb29f7a1957578, type: 3}
   m_Name: Policy_R3_CareRobots
   m_EditorClassIdentifier: 
-  title: Replace 70% of care staff with robots
-  summary: "Care robots take over most shifts at Elmwood. The savings, \xA34.1 million,
-    go to A&E nurses."
+  title: Redirect 50% healthcare budget
+  summary: Move 50% healthcare budget to advance AI robotics research and social
+    housing
   civicPitch: {fileID: 11400000, guid: 312218b61b771e24d90cab2aa32941b3, type: 2}
   affectedBuildings:
   - {fileID: 11400000, guid: ba0b4d4d54c4a8f4b80f49da1463aa34, type: 2}
   - {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
   decisionSeconds: 0
   requiresMajorityToOverride: 0
-  amendWording: Robots for night shifts and lifting only; keep human carers in the
-    day and add an app-free call button.
+  amendWording: Move 20% healthcare budget to AI care robots.
   onAgree: {fileID: 11400000, guid: 4f6670559a1153747b964b522174dd55, type: 2}
   onDisagree: {fileID: 11400000, guid: 14efe5d823e27e14cbe4c6fa9266de61, type: 2}
   onAmend: {fileID: 11400000, guid: e3c2fd955d3936145b83de98df1df895, type: 2}

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Role_Amara
   m_EditorClassIdentifier: 
   displayName: Amara
-  age: 38
+  age: 28
   job: A&E nurse
   portrait: {fileID: 0}
   accentColor: {r: 0.85, g: 0.33, b: 0.33, a: 1}
   hiddenGoal: Get more funding into healthcare.
-  secret: You've been offered a well-paid job at a private AI-health company.
+  secret: 
   roomEnvironmentPrefab: {fileID: 0}
   roomIntro: Your night shift in A&E is ending. Three patients waited six hours tonight.
   valuePriorities:
@@ -32,13 +32,13 @@ MonoBehaviour:
   defaultStance: 1
   endings:
   - requiredFlags: []
-    text: Amara stayed at Newhaven General. Some nights, after a long shift, the
-      private job offer still comes to mind.
+    text: 'Amara is still working at A&E, the waiting time grows, she enjoys helping
+      people but sometimes feels drained. '
   - requiredFlags:
     - care_robots
-    text: The robot savings paid for new nurses. Amara stayed in A&E, and for the
-      first time in years the waits came down.
+    text: Amara lost her job in A&E. For the first time in years the waiting time
+      is predicted to come down.
   - requiredFlags:
     - health_data
-    text: CIVIC now reads every patient record. Amara took the private AI-health
-      job; the pay is better, the questions harder.
+    text: AI now reads every patient record. Amara took a private AI-health job;
+      the pay is better, but she wants to help more people.

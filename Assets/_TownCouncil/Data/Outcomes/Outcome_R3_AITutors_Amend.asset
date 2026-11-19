@@ -23,7 +23,7 @@ MonoBehaviour:
     customTransitionPrefab: {fileID: 0}
   headline: AI tutors launch; two classes stay in person
   diaryAuthor: Sam
-  diaryYear: 2051
+  diaryYear: 2043
   diaryText: Did maths with the AI, then art class in person. Best of both.
   endingFlags:
   - college_mixed

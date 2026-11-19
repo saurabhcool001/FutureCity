@@ -12,40 +12,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fe17fc68e10a14192130a783be0dac, type: 3}
   m_Name: Scenario_Newhaven
   m_EditorClassIdentifier: 
-  townName: Newhaven
-  startYear: 2045
+  townName: Civitas
+  startYear: 2042
   introPages:
-  - title: Town Council 2045
-    body: 'Welcome to Newhaven, 2045.
+  - title: Civitas 2042
+    body: 'Welcome to the year 2042.
 
 
-      Ten years ago, this town handed its
-      budget to CIVIC, an AI planning system. Calm, polite and statistically right.'
-  - title: You are the council
-    body: 'By law, citizens must still approve CIVIC''s policies in person, once
-      a year.
+      Following a decade of global negotiations
+      on responsible AI development, the AI race has slowed, and transparency in
+      AI research has become the global standard.
 
 
-      This year, the council is you and up to three others.'
-  - title: How it works
-    body: 'CIVIC puts policies in front of you. For each one you have a short time
-      to <b>Agree</b>, <b>Disagree</b> or <b>Amend</b>.
+      By 2035, the most advanced
+      AI systems had been proven to match or surpass the world''s leading human experts
+      in every field.
 
 
-      Every decision changes
-      the town, and you''ll see what Newhaven becomes.'
-  - title: Your role
-    body: 'You''ll pick a role card: a public identity, a hidden goal and a secret
-      only you know.
+      AI is now deeply embedded in government decision-making.
+      Few question its capabilities. But one question remains:'
+  - title: Should AI always make the decisions for us?
+    body: 'By law, citizens retain the right to challenge AI-generated policies in
+      person, once a year.
 
 
-      You choose if and when to reveal it.'
+      Today, you are among them.
+
+
+      You and three
+      other students will step into the lives of different citizens and decide on
+      your shared future.
+
+
+      The AI Policy Maker will present policies based
+      on the population''s needs. You must vote within a limited time:'
+  - title: AGREE. DISAGREE. AMEND.
+    body: 'The AI will put policies in front of you. For each one you have a short
+      time to <b>Agree</b>, <b>Disagree</b> or <b>Amend</b>.
+
+
+      A policy passes
+      only when over 70% approve*. Otherwise, the AI will revise its proposal and
+      try again.'
+  - title: First, choose an identity.
+    body: 'Step into someone else''s life, experience their world, and understand
+      their priorities.
+
+
+      Every choice has consequences. The future you build
+      is yours to decide.'
   - title: Before you join
     body: 'Point at buttons and pull the trigger to press them. Use the grip to pick
       things up.
 
 
-      There is no winning Newhaven. Only choosing what it values.'
+      There is no winning in Civitas. Only choosing what it values.'
   roles:
   - {fileID: 11400000, guid: 993bfcbe932d07b41b7c2a8b512897ee, type: 2}
   - {fileID: 11400000, guid: 22ccb6e53bf82204db6844ba1bf50d9f, type: 2}

@@ -23,9 +23,9 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: 8d713ca085778dd47b66c751b5e36c54, type: 2}
     state: {fileID: 11400000, guid: 0300199ff96743a46a8a7a1693455a61, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: Every CIVIC decision now comes with a reason
-  diaryAuthor: Mr Hussain
-  diaryYear: 2054
+  headline: Every AI decision now comes with a reason
+  diaryAuthor: Amara
+  diaryYear: 2043
   diaryText: For the first time, I understood why.
   endingFlags:
   - explanations

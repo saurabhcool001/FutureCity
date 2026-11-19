@@ -23,10 +23,9 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: 198362be25415c1498a0abadf623e42d, type: 2}
     state: {fileID: 11400000, guid: 0e34255f4ceb788449e71b6ae2b83faf, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: Night buses replaced by app-booked shuttles
+  headline: Night buses replaced by automated shuttles
   diaryAuthor: Edith
-  diaryYear: 2047
-  diaryText: I can't book the shuttle. I haven't been to the Thursday club since
-    spring.
+  diaryYear: 2043
+  diaryText: "I can't book the shuttle because I don\xB4t know how to."
   endingFlags:
   - shuttles

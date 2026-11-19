@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Line_Round4_WhoDecides_Intro
   m_EditorClassIdentifier: 
   speaker: CIVIC
-  subtitle: You deadlocked {deadlocks} times. Let me make this simpler for everyone.
+  subtitle: You repeated {deadlocks} times. Let me make this simpler for everyone.
   audio: {fileID: 0}

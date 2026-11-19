@@ -23,10 +23,11 @@ MonoBehaviour:
   - building: {fileID: 11400000, guid: d1ffc0bfae257c54787b3d75a4e34247, type: 2}
     state: {fileID: 11400000, guid: 0e34255f4ceb788449e71b6ae2b83faf, type: 2}
     customTransitionPrefab: {fileID: 0}
-  headline: CIVIC gains access to every GP record
+  headline: "AI gains access to every citizen\xB4s medical record"
   diaryAuthor: Amara
-  diaryYear: 2049
-  diaryText: CIVIC flagged a patient before she knew she was ill. It was right. It
-    still felt wrong.
+  diaryYear: 2043
+  diaryText: AI flagged a patient before she knew she was ill. It was right. But
+    some patients are anxious about their privacy and prefer to talk about their
+    complains with human.
   endingFlags:
   - health_data

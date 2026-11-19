@@ -22,7 +22,7 @@ MonoBehaviour:
   cityChanges: []
   headline: Council keeps the library; screening plans shelved
   diaryAuthor: Amara
-  diaryYear: 2046
+  diaryYear: 2043
   diaryText: Another late diagnosis tonight. I keep thinking about those screenings.
   endingFlags:
   - library_saved

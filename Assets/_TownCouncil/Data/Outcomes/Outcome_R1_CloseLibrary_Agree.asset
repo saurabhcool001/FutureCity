@@ -30,7 +30,7 @@ MonoBehaviour:
     customTransitionPrefab: {fileID: 0}
   headline: Library closes as screening programme launches
   diaryAuthor: Sam
-  diaryYear: 2046
-  diaryText: Revising in McDonald's again. Nowhere quiet left.
+  diaryYear: 2043
+  diaryText: Nowhere quiet to study.
   endingFlags:
   - library_closed

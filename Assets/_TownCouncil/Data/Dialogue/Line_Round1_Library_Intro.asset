@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Line_Round1_Library_Intro
   m_EditorClassIdentifier: 
   speaker: CIVIC
-  subtitle: Good evening, council. By law, you must still approve my recommendations.
+  subtitle: Good evening, citizen. By law, you must still approve my recommendations.
     A formality.
   audio: {fileID: 0}

@@ -18,7 +18,7 @@ MonoBehaviour:
   cityChanges: []
   headline: Reasons published for big decisions
   diaryAuthor: Leo
-  diaryYear: 2054
-  diaryText: Our team writes the explanation module now. Strange full circle.
+  diaryYear: 2043
+  diaryText: 'Our automated team writes the explanation module now. '
   endingFlags:
   - explanations_big

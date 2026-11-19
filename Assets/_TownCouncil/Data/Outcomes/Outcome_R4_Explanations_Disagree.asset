@@ -18,8 +18,8 @@ MonoBehaviour:
   - meter: {fileID: 11400000, guid: 5144f15267509594d97f12fc95559eec, type: 2}
     amount: -1
   cityChanges: []
-  headline: CIVIC keeps its reasons to itself
+  headline: AI keeps its reasons to itself
   diaryAuthor: Sam
-  diaryYear: 2054
-  diaryText: It just says 'optimal'. Optimal for who?
+  diaryYear: 2043
+  diaryText: Could we really trust AI to think the best for human?
   endingFlags: []

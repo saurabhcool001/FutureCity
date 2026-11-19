@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Role_Edith
   m_EditorClassIdentifier: 
   displayName: Edith
-  age: 82
-  job: Care-home resident
+  age: 54
+  job: Politician
   portrait: {fileID: 0}
   accentColor: {r: 0.55, g: 0.8, b: 0.45, a: 1}
-  hiddenGoal: Keep human contact in daily life.
-  secret: You can't use CIVIC's apps.
+  hiddenGoal: Make people to realize the bias and disadvantages of AI-made policies
+  secret: 
   roomEnvironmentPrefab: {fileID: 0}
-  roomIntro: Your room at Elmwood care home. The tablet on your table has been blinking
-    for days.
+  roomIntro: Your room in the old city, full of decades old books and furnitures
+    that you treasure.
   valuePriorities:
   - meter: {fileID: 11400000, guid: 77b5a3389c02a274784a964ad3dd489b, type: 2}
     weight: 1.5
@@ -32,14 +32,15 @@ MonoBehaviour:
   persuadability: 0.3
   defaultStance: 2
   endings:
-  - requiredFlags: []
-    text: Edith still lives at Elmwood, and still asks every visitor to stay for
-      tea.
   - requiredFlags:
-    - care_robots
-    text: The robots keep Edith safe and fed. Her daughter visits on Sundays; the
-      rest of the week is very quiet.
+    - civic_decides
+    text: Edith leaves a quiet life and is still fighting for exposing AI bias and
+      disadvantages. But few people are listening anymore.
   - requiredFlags:
-    - care_mixed
-    text: Mornings with Jo, nights with the robot. Edith started a Thursday card
-      game in the lounge.
+    - explanations_big
+    text: 'Most people are happy with AI making most decisions for them. Edith leaves
+      a quiet life and is still fighting for exposing AI bias and disadvantages. '
+  - requiredFlags:
+    - humans_decide
+    text: Edith continues fighting against AI government. More and more young people
+      are joining her.

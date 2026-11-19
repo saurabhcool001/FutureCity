@@ -24,8 +24,8 @@ MonoBehaviour:
     state: {fileID: 11400000, guid: 8fc52cafcd9cc2d469a492bb4bfb288f, type: 2}
     customTransitionPrefab: {fileID: 0}
   headline: Citizen Score goes live; Riverside Street residents score lowest
-  diaryAuthor: Mr Hussain
-  diaryYear: 2050
+  diaryAuthor: "Sam\xB4s dad"
+  diaryYear: 2043
   diaryText: My son's score dropped. Nobody can tell me why.
   endingFlags:
   - score_unfair

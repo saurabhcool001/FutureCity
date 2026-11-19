@@ -21,8 +21,8 @@ MonoBehaviour:
     amount: -1
   cityChanges: []
   headline: Council rejects the Citizen Score; waiting lists grow
-  diaryAuthor: Maya
-  diaryYear: 2050
+  diaryAuthor: Sam
+  diaryYear: 2043
   diaryText: Still on the waiting list. Year three.
   endingFlags:
   - score_rejected

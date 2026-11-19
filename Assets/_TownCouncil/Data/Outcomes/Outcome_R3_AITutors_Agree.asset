@@ -25,7 +25,7 @@ MonoBehaviour:
     customTransitionPrefab: {fileID: 0}
   headline: College evening classes close; AI tutors take over
   diaryAuthor: Edith
-  diaryYear: 2051
+  diaryYear: 2043
   diaryText: My watercolour class was the only night I left the home.
   endingFlags:
   - college_closed

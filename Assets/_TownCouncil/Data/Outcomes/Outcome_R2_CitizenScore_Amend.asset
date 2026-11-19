@@ -22,8 +22,8 @@ MonoBehaviour:
     state: {fileID: 11400000, guid: 19df7df9ab3f18c4a86942064eb66e29, type: 2}
     customTransitionPrefab: {fileID: 0}
   headline: Fairer score launches with human appeals
-  diaryAuthor: Mr Hussain
-  diaryYear: 2050
+  diaryAuthor: "Sam\xB4s dad"
+  diaryYear: 2043
   diaryText: I appealed. A real person listened. We got the flat.
   endingFlags:
   - score_amended
