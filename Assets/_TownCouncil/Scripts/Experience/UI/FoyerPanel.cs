@@ -50,7 +50,7 @@ namespace TownCouncil.Experience
             if (codeText != null)
             {
                 var code = XRINetworkGameManager.ConnectedRoomCode;
-                codeText.text = string.IsNullOrEmpty(code) ? "" : $"Council code  <b>{code}</b>";
+                codeText.text = string.IsNullOrEmpty(code) ? "" : $"Session code  <b>{code}</b>";
             }
 
             if (!live)

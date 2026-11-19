@@ -19,7 +19,7 @@ namespace TownCouncil.Experience
             string who = seat.Occupant switch
             {
                 SeatOccupant.Empty => "Empty seat",
-                SeatOccupant.AI => role != null ? $"{role.CardTitle} · AI" : "AI councillor (choosing)",
+                SeatOccupant.AI => role != null ? $"{role.CardTitle} · AI" : "AI citizen (choosing)",
                 _ => seat.Name.ToString()
             };
 
@@ -63,16 +63,16 @@ namespace TownCouncil.Experience
                 case CouncilPhase.Gathering:
                     float left = session.SecondsUntilAIFill;
                     int empty = session.SeatCount - session.HumanCount;
-                    if (left < 0f) return "Waiting for councillors…";
+                    if (left < 0f) return "Waiting for players…";
                     return empty == 1
                         ? $"Waiting for 1 more person. AI fills the empty seat in {Countdown(left)}"
                         : $"Waiting for {empty} more people. AI fills the empty seats in {Countdown(left)}";
                 case CouncilPhase.Locked:
                     return session.AICount > 0
-                        ? $"The council is set: {session.HumanCount} people and {session.AICount} AI councillors."
-                        : "The council is set: every seat has a person.";
+                        ? $"The session is set: {session.HumanCount} citizens and {session.AICount} AI's."
+                        : "The session is set: every seat has a citizen.";
                 default:
-                    return "The council is complete.";
+                    return "The session is complete.";
             }
         }
     }
